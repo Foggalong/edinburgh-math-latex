@@ -1,0 +1,28 @@
+%% In file.tex containing a Beamer presentation, Use \bnote{} so that
+%% your notes on slides get converted automatically into
+%% pdf-presenter-console notes (file.pdfpc)
+%% 
+
+\begingroup
+\catcode`\#=12
+\gdef\slidenumberprefix{### }%
+\endgroup
+\typeout{Starting beamer notes.}
+\let\BeamerNotesBuffer\empty
+\newcounter{BeamerNotesCounter}
+\newcommand{\bnote}[1]{\typeout{Creating note: #1}
+  \stepcounter{BeamerNotesCounter}%
+  \xdef\BeamerNotesBuffer{\BeamerNotesBuffer
+    ^^J\slidenumberprefix \theBeamerNotesCounter ^^J#1}%
+    \mode<article>{#1}}
+\AtEndDocument{%
+\newwrite\file
+\immediate\openout\file=\jobname.pdfpc
+\immediate\write\file{[file]^^J%
+\jobname.pdf^^J%
+[end_user_slide]^^J%
+\theBeamerNotesCounter^^J%
+[notes]%
+\BeamerNotesBuffer}
+\closeout\file
+}

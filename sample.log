@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.6.19)  19 JUN 2020 22:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.6.19)  20 JUN 2020 14:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -663,25 +663,9 @@ Package: beamerthemeUsherNew
 Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
 )
 \beamer@Usher@titleheight=\dimen277
-
-
-Package pgf Warning: File "big-U" not found when defining image "big-U". Tried 
-all extensions in ".pdf:.jpg:.jpeg:.png:" on input line 48.
-
-
-Package pgf Warning: Missing height for image "big-U" ("big-U") in draft mode. 
-Using 1cm instead on input line 48.
-
-
-Package pgf Warning: File "big-U" not found when defining image "little=u". Tri
-ed all extensions in ".pdf:.jpg:.jpeg:.png:" on input line 49.
-
-
-Package pgf Warning: Missing height for image "little=u" ("big-U") in draft mod
-e. Using 1cm instead on input line 49.
-
 \barheight=\skip63
-) (./beamernotes.sty
+)
+(./beamernotes.sty
 Starting beamer notes.
 \c@BeamerNotesCounter=\count310
 ) (/usr/local/texlive/2020/texmf-dist/tex/latex/lipsum/lipsum.sty
@@ -932,7 +916,7 @@ LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <8> not available
 -tied-in.pdf>]
 Creating note: This generates notes for pdfpc. These notes also appear on the h
 andout/article versions.
-<edinburgh-logo.pdf, id=24, 57.74072pt x 58.11713pt>
+<edinburgh-logo.pdf, id=26, 57.74072pt x 58.11713pt>
 File: edinburgh-logo.pdf Graphic file (type pdf)
 <use edinburgh-logo.pdf>
 Package pdftex.def Info: edinburgh-logo.pdf  used on input line 35.
@@ -978,13 +962,13 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 18434 strings out of 480608
- 358291 string characters out of 5903630
- 862629 words of memory out of 5000000
+ 18432 strings out of 480608
+ 358302 string characters out of 5903630
+ 862405 words of memory out of 5000000
  33857 multiletter control sequences out of 15000+600000
- 553230 words of font info for 64 fonts, out of 8000000 for 9000
+ 554384 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 58i,13n,67p,810b,445s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 58i,13n,67p,808b,445s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/te
 xlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/local/tex
@@ -993,10 +977,10 @@ ive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/
 texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive
 /2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2020/t
 exmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on sample.pdf (3 pages, 134704 bytes).
+Output written on sample.pdf (3 pages, 134793 bytes).
 PDF statistics:
- 73 PDF objects out of 1000 (max. 8388607)
+ 75 PDF objects out of 1000 (max. 8388607)
  52 compressed objects within 1 object stream
  10 named destinations out of 1000 (max. 500000)
- 53 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 63 words of extra memory for PDF output out of 10000 (max. 10000000)
 

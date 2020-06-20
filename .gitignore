@@ -3,3 +3,4 @@
 main.pdf
 *.nav
 .DS_Store
+*.gz

@@ -1,0 +1,5 @@
+*.log
+*.out
+main.pdf
+*.nav
+.DS_Store

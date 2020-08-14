@@ -1,0 +1,216 @@
+%%  Package `edmaths' (26.8.2008)
+%%
+%%  A LaTeX 2e style file for typesetting a
+%%  PhD thesis / First-Year Report / Master thesis / Fourth-year project 
+%%  in the School of Mathematics, University of Edinburgh
+%%
+%%  By Thomas Koeppe, 2006-7
+%%
+%%
+%%  Usage:
+%%  ------
+%%  Use \documentclass{report}
+%%  and \usepackage[{phd|firstyear|y4project|...},...]{edmaths}.
+%%
+%%  Do define \title, \author, \date before loading this package!
+%%
+%%  See documentation at http://www.maths.ed.ac.uk/pg/edmaths.html
+%%
+%%
+%%  Example usage:
+%%  --------------
+%%
+%%  \documentclass[12pt,oneside]{report}
+%%  \title{Report Title}
+%%  \date{Report Date}
+%%  \author{Author Name}
+%%  \usepackage[phd,fancyhdr,hyperref,colour]{edmaths}
+%%  \flushbottom
+%%
+%%  \begin{document}
+%%  \pagenumbering{roman}
+%%  \maketitle
+%%
+%%  \begin{abstract} ... Abstract text ... \end{abstract}
+%%  \declaration
+%%  \dedication{...dedication text...}
+%%
+%%  \tableofcontents
+%%  \addcontentsline{toc}{chapter}{Contents}
+%%  \newpage
+%%  \pagenumbering{arabic}
+%%
+%%  [Main document body here, e.g. \chaper{...} \section{...} ... ]
+%%
+%% \bibliographystyle{...}  % Or use the `amsrefs' package (http://www.ams.org/tex/amsrefs.html)!
+%% \bibliography{bibliography file}
+%% \addcontentsline{toc}{chapter}{Bibliography}
+%% \end{document}
+%%
+%% ---------------
+
+
+
+
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{edmaths}[2007/02/05 Edinburgh maths thesis/report style v0.95]
+
+\RequirePackage{calc,ifthen,setspace,amsmath,amsthm,amscd,amssymb}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Set up the page size and margins %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\paperheight}{297mm}    % A4 Paper
+\setlength{\paperwidth}{210mm}     %
+\setlength{\oddsidemargin}{14.6mm} %  Left/Inside: 4.0cm (rel. -1in)
+\setlength{\evensidemargin}{-.4mm} %  Right/Outside: 2.5cm (rel. -1in)
+\setlength{\topmargin}{-17.4mm}    % \
+\setlength{\headheight}{6mm}       % | Top: 2.0cm (rel. -1in), out of which 6mm for the header
+\setlength{\headsep}{6mm}          % /
+\setlength{\textwidth}{145mm}      % Margins: 2.5cm + 4cm
+% Textheight delayed until we know the line spacing.
+
+% The following is removed in favour of the `report' class options "oneside/twoside".
+%\@twosidefalse \@mparswitchfalse  % Single-sided by default
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Provide some fancy option        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newboolean{with-fourier}           % Use the `fourier' package for Adobe Utopia font
+\newboolean{with-hyperref}          % Use the `hyperref' package for clickable links and bookmarks, all black
+\newboolean{with-colour}            % Add sane colours to the hyperref links
+\newboolean{with-fancyhdr}          % Use the `fancyhdr' package to provide header and footer
+
+\ifthenelse{\isundefined{\degreetext}}{\newcommand{\degreetext}{Specify a degree option!}}{}
+\ifthenelse{\isundefined{\stretchfactor}}{\newcommand{\stretchfactor}{1}}{}
+\DeclareOption{fourier}{\setboolean{with-fourier}{true}}
+\DeclareOption{hyperref}{\setboolean{with-hyperref}{true}}
+\DeclareOption{colour}{\setboolean{with-colour}{true}}
+\DeclareOption{fancyhdr}{\setboolean{with-fancyhdr}{true}}
+
+\DeclareOption{phd}{\renewcommand{\degreetext}{Doctor of Philosophy}}
+\DeclareOption{firstyear}{\renewcommand{\degreetext}{First-Year Report\\Graduate School of Mathematics}}
+\DeclareOption{secondyear}{\renewcommand{\degreetext}{Second-Year Report\\Graduate School of Mathematics}}
+\DeclareOption{thirdyear}{\renewcommand{\degreetext}{Third-Year Report\\Graduate School of Mathematics}}
+\DeclareOption{y4project}{\renewcommand{\degreetext}{Year 4 Project\\School of Mathematics}}
+\DeclareOption{masterph}{\renewcommand{\degreetext}{Master of Philosophy}}
+\DeclareOption{mastersc}{\renewcommand{\degreetext}{Master of Science by Research}}
+
+\DeclareOption{single}{\renewcommand{\stretchfactor}{1}}
+\DeclareOption{onehalf}{\renewcommand{\stretchfactor}{1.5}}
+\DeclareOption{double}{\renewcommand{\stretchfactor}{2}}
+
+%\DeclareOption{oneside}{\@twosidefalse \@mparswitchfalse}  % Single-sided by default
+%\DeclareOption{twosides}{\@twosidetrue \@mparswitchtrue}
+
+\ProcessOptions
+
+\ifthenelse{\boolean{with-fourier}}
+  { \RequirePackage{cmap}
+    \RequirePackage{fourier}
+    \RequirePackage[T1]{fontenc}
+    \RequirePackage{microtype}
+  } {}
+
+\ifthenelse{\boolean{with-hyperref}}
+  {
+    \RequirePackage[dvipsnames]{xcolor}
+    \RequirePackage[pdftitle={\@title}, pdfauthor={\@author}, pdfcreator={PDFLaTeX with edmaths}, pdfpagelayout=OneColumn, colorlinks=true, linkcolor=black, urlcolor=black, citecolor=black]{hyperref}
+  \ifthenelse{\boolean{with-colour}}
+    {
+      \hypersetup{linkcolor=Sepia, urlcolor=NavyBlue, citecolor=Sepia}
+    } {}
+  } {}
+
+\ifthenelse{\boolean{with-fancyhdr}}
+  {
+    \RequirePackage{fancyhdr}
+    \pagestyle{fancy}
+    \fancyhf{}
+    \fancyhead[RO,LE]{\thepage}
+    \fancyfoot[RO,LE]{\thepage}
+    \fancyhead[LO]{\it\@title}
+    \fancyhead[RE]{\@author}
+    \fancyfoot[RE,LO]{}
+  } {}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Set up the text body height      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% For the text height, we calculate the largest number of lines that gives us no more than 4cm bottom margin.
+% This depends on the line spacing, which we need first.
+
+\setstretch{\stretchfactor}
+
+% Debug only: In the next line, \XXXfactor contains the number of lines on a text-only page.
+%\newlength{\XXXunit}\setlength{\XXXunit}{1pt}\newlength{\XXXfactor}\setlength{\XXXfactor}{1pt + ((672pt - \topskip) / \baselineskip) * \XXXunit}
+\newlength{\scratchlength}\setlength{\scratchlength}{\topskip + ((672pt - \topskip) / \baselineskip) * \baselineskip + \baselineskip}
+\setlength{\textheight}{\scratchlength}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Make the title page etc          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\maketitle}{%
+  \begin{titlepage}
+    \singlespacing
+    \addtolength{\oddsidemargin}{-0.75cm}
+    \begin{center}
+    \null\vskip 4.1cm
+    \begin{minipage}[t][7.6cm]{10.5cm}
+      \begin{center}
+      {\LARGE\textbf{\@title}\par}\vfill
+      {\Large\textit{\@author}\par}
+      \end{center}
+    \end{minipage}
+    \vfill
+    {\Large\degreetext \par University of Edinburgh \par\@date \par}
+    \end{center}
+  \end{titlepage}
+  \if@twoside
+    \thispagestyle{empty}
+    \cleardoublepage
+  \else
+    \addtocounter{page}{1}
+  \fi
+}
+
+\newcommand{\declaration}{%
+  \chapter*{Declaration}
+  \begin{singlespace}
+  I declare that this thesis was composed by myself 
+  and that the work contained therein is my own, 
+  except where explicitly stated otherwise in the text.
+  \end{singlespace}
+
+  {\raggedleft\vspace{2cm}(\textit{\@author})
+
+  }
+}
+
+\renewenvironment{abstract}{\chapter*{\abstractname}}{\addcontentsline{toc}{chapter}{\abstractname}}
+
+\newcommand{\dedication}[1]{%
+  \clearpage
+  \thispagestyle{plain}
+  \vspace*{7cm}
+  \begin{center}
+    \Large\it #1
+  \end{center}
+}
+
+%% A special declaration for Year 4 reports
+\newcommand{\yfourdeclaration}[1]{%
+ \vfill
+ \noindent
+ This project report is submitted in partial fulfilment of the requirements for the degree of
+ \textit{#1}.
+}

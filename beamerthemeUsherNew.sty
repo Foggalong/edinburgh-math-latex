@@ -4,7 +4,7 @@
 \RequirePackage{amsfonts}
 \RequirePackage{graphicx}
 \RequirePackage{times}
-%  9:5 (approx), as in ppt template 
+%  9:5 (approx), as in ppt template
 
 \definecolor{UoEblue}{RGB}{0,50,95}
 
@@ -44,9 +44,9 @@
 
 %\setbeamertemplate{items}[ball]
 \setbeamertemplate{navigation symbols}{}
-\pgfdeclareimage[width=14.69cm]{white-tied-in}{white-tied-in}
-\pgfdeclareimage[width=4.65cm]{edinburgh-logo}{edinburgh-logo}
-\pgfdeclareimage[width=1.25cm]{little=u}{edinburgh-logo}
+\pgfdeclareimage[width=14.69cm]{white-tied-in}{Images/white-tied-in}
+\pgfdeclareimage[width=4.65cm]{edinburgh-logo}{Images/edinburgh-logo}
+\pgfdeclareimage[width=1.25cm]{little=u}{Images/edinburgh-logo}
 \setbeamerfont{alerted text}{series=\bfseries}
 \setbeamercolor{alerted text}{fg=\beamer@Usher@color!80!black}
 \setbeamercolor{title}{fg=black}
@@ -66,7 +66,7 @@
 \setbeamertemplate{title page}
 {
   \begin{minipage}{.6\linewidth}
-    \raggedright 
+    \raggedright
     {\usebeamerfont{title}\textcolor{white}\inserttitle\par~}
   \ifx\insertsubtitle\@empty\else%
   \\[1ex]
@@ -95,7 +95,7 @@
    \else%
    \begin{picture}(25.4,19.05)(0,0)
      \put(23.5, 0){\crule[\beamer@Usher@color]{1.75cm}{19.05cm}}
-     \put(23.65, 17.3){\includegraphics[width=1.45cm,height=1.45cm]{edinburgh-logo}}
+     \put(23.65, 17.3){\includegraphics[width=1.45cm,height=1.45cm]{Images/edinburgh-logo}}
    \end{picture}
    \fi
 }
@@ -115,7 +115,7 @@
 %% set top margin for each frame
 %\addtolength{\headsep}{1cm}
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "sample"
-%%% End: 
+%%% End:

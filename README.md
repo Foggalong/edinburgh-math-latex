@@ -1,6 +1,14 @@
 # Edinburgh LaTeX
 LaTeX styles files for School of Math, University of Edinburgh. The license for the Beamer files are LPPL 3c. The licenses for all other files are unknown.
 
+## Authors
+While Josh Fogg maintains these versions, they would not have been possible without the work of:
+
+- Thomas Köppe (@tkoeppe), wrote the original `edmaths` style file;
+- Saturnino Luz, created the original `beamernotes` and Beamer template for the [Usher Institute](https://www.ed.ac.uk/usher);
+- Ben Brown (@bencwbrown), modified the Beamer theme for general UoE usage.
+
+
 ## The edmaths package for LaTeX/report
 
 The current version is 0.96.
@@ -146,6 +154,8 @@ My abstract.
 Known issues
 
 None at the moment. Send an email to the author if you would like to raise an issue.
+
+If you want to add spacing between lines (for annotating a paper copy, for example) then the package [setspace.sty](https://github.com/rf-latex/setspace) is recommended by the University. This was originally bundled with `edmaths` but has since been included in CTAN.
 
 
 ## New Usher Institute theme for LaTeX/beamer presentations.  

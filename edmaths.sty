@@ -1,67 +1,19 @@
-%%  Package `edmaths' (26.8.2008)
+%% Package `edmaths' v0.97
 %%
-%%  A LaTeX 2e style file for typesetting a
-%%  PhD thesis / First-Year Report / Master thesis / Fourth-year project 
-%%  in the School of Mathematics, University of Edinburgh
-%%
-%%  By Thomas Koeppe, 2006-7
-%%
-%%
-%%  Usage:
-%%  ------
-%%  Use \documentclass{report}
-%%  and \usepackage[{phd|firstyear|y4project|...},...]{edmaths}.
-%%
-%%  Do define \title, \author, \date before loading this package!
-%%
-%%  See documentation at http://www.maths.ed.ac.uk/pg/edmaths.html
-%%
-%%
-%%  Example usage:
-%%  --------------
-%%
-%%  \documentclass[12pt,oneside]{report}
-%%  \title{Report Title}
-%%  \date{Report Date}
-%%  \author{Author Name}
-%%  \usepackage[phd,fancyhdr,hyperref,colour]{edmaths}
-%%  \flushbottom
-%%
-%%  \begin{document}
-%%  \pagenumbering{roman}
-%%  \maketitle
-%%
-%%  \begin{abstract} ... Abstract text ... \end{abstract}
-%%  \declaration
-%%  \dedication{...dedication text...}
-%%
-%%  \tableofcontents
-%%  \addcontentsline{toc}{chapter}{Contents}
-%%  \newpage
-%%  \pagenumbering{arabic}
-%%
-%%  [Main document body here, e.g. \chaper{...} \section{...} ... ]
-%%
-%% \bibliographystyle{...}  % Or use the `amsrefs' package (http://www.ams.org/tex/amsrefs.html)!
-%% \bibliography{bibliography file}
-%% \addcontentsline{toc}{chapter}{Bibliography}
-%% \end{document}
-%%
-%% ---------------
-
-
-
-
+%% A LaTeX style file for typesetting reports and theses in the School of Mathematics
+%% at the University of Edinburgh originally written by Thomas Koeppe in 2007/07, it
+%% has since been updated by Josh Fogg (2020/21). Suitable for use for theses, yearly
+%% year reports, and undergraduate projects. See README.md for usage instructions.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{edmaths}[2007/02/05 Edinburgh maths thesis/report style v0.95]
-
+\ProvidesPackage{edmaths}[Edinburgh maths thesis/report style v0.95]
 \RequirePackage{calc,ifthen,setspace,amsmath,amsthm,amscd,amssymb}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Set up the page size and margins %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% PAGE SIZE AND MARING
+% These settings control the size of the page and its margins. All measurements are
+% compliant wih the school's typesetting requirements.
 
 \setlength{\paperheight}{297mm}    % A4 Paper
 \setlength{\paperwidth}{210mm}     %
@@ -77,22 +29,23 @@
 %\@twosidefalse \@mparswitchfalse  % Single-sided by default
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Provide some fancy option        %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newboolean{with-fourier}           % Use the `fourier' package for Adobe Utopia font
-\newboolean{with-hyperref}          % Use the `hyperref' package for clickable links and bookmarks, all black
-\newboolean{with-colour}            % Add sane colours to the hyperref links
-\newboolean{with-fancyhdr}          % Use the `fancyhdr' package to provide header and footer
+% PACKAGE OPTIONS
+% These options can be selected wihin \usepackage[...]{edmaths} to modify the
+% appearance of different parts of the document.
 
-\ifthenelse{\isundefined{\degreetext}}{\newcommand{\degreetext}{Specify a degree option!}}{}
-\ifthenelse{\isundefined{\stretchfactor}}{\newcommand{\stretchfactor}{1}}{}
+% Options relating to external packages
+\newboolean{with-fourier}   % Use the `fourier' package for Adobe Utopia font
+\newboolean{with-hyperref}  % Use the `hyperref' package for hyperlinks and bookmarks, all black
+\newboolean{with-colour}    % Add sane colours to the hyperref links
+\newboolean{with-fancyhdr}  % Use the `fancyhdr' package to provide header and footer
 \DeclareOption{fourier}{\setboolean{with-fourier}{true}}
 \DeclareOption{hyperref}{\setboolean{with-hyperref}{true}}
 \DeclareOption{colour}{\setboolean{with-colour}{true}}
 \DeclareOption{fancyhdr}{\setboolean{with-fancyhdr}{true}}
 
+% Options relating to document type (thesis, report, etc)
+\ifthenelse{\isundefined{\degreetext}}{\newcommand{\degreetext}{Specify a degree option!}}{}
 \DeclareOption{phd}{\renewcommand{\degreetext}{Doctor of Philosophy}}
 \DeclareOption{firstyear}{\renewcommand{\degreetext}{First-Year Report\\Graduate School of Mathematics}}
 \DeclareOption{secondyear}{\renewcommand{\degreetext}{Second-Year Report\\Graduate School of Mathematics}}
@@ -101,34 +54,39 @@
 \DeclareOption{masterph}{\renewcommand{\degreetext}{Master of Philosophy}}
 \DeclareOption{mastersc}{\renewcommand{\degreetext}{Master of Science by Research}}
 
+% Options relating to stretchfactor (used for margin spacing)
+\ifthenelse{\isundefined{\stretchfactor}}{\newcommand{\stretchfactor}{1}}{}
 \DeclareOption{single}{\renewcommand{\stretchfactor}{1}}
 \DeclareOption{onehalf}{\renewcommand{\stretchfactor}{1.5}}
 \DeclareOption{double}{\renewcommand{\stretchfactor}{2}}
 
+% Options relating to having single or double sided documents
 %\DeclareOption{oneside}{\@twosidefalse \@mparswitchfalse}  % Single-sided by default
 %\DeclareOption{twosides}{\@twosidetrue \@mparswitchtrue}
 
+
 \ProcessOptions
 
-\ifthenelse{\boolean{with-fourier}}
-  { \RequirePackage{cmap}
+% If with-fourier selected, use the Adobe Utopia font.
+\ifthenelse{\boolean{with-fourier}}{
+    \RequirePackage{cmap}
     \RequirePackage{fourier}
     \RequirePackage[T1]{fontenc}
     \RequirePackage{microtype}
-  } {}
+} {}
 
-\ifthenelse{\boolean{with-hyperref}}
-  {
+% If with-hyperref selected, configure its default settings
+\ifthenelse{\boolean{with-hyperref}}{
     \RequirePackage[dvipsnames]{xcolor}
     \RequirePackage[pdftitle={\@title}, pdfauthor={\@author}, pdfcreator={PDFLaTeX with edmaths}, pdfpagelayout=OneColumn, colorlinks=true, linkcolor=black, urlcolor=black, citecolor=black]{hyperref}
-  \ifthenelse{\boolean{with-colour}}
-    {
-      \hypersetup{linkcolor=Sepia, urlcolor=NavyBlue, citecolor=Sepia}
+    % If with-colour selected, use it to make hyperlinks blue not black
+    \ifthenelse{\boolean{with-colour}}{
+        \hypersetup{linkcolor=Sepia, urlcolor=NavyBlue, citecolor=Sepia}
     } {}
-  } {}
+} {}
 
-\ifthenelse{\boolean{with-fancyhdr}}
-  {
+% If with-fancyhdr selected, use it to provide fancier headers and footers
+\ifthenelse{\boolean{with-fancyhdr}}{
     \RequirePackage{fancyhdr}
     \pagestyle{fancy}
     \fancyhf{}
@@ -137,15 +95,14 @@
     \fancyhead[LO]{\it\@title}
     \fancyhead[RE]{\@author}
     \fancyfoot[RE,LO]{}
-  } {}
+} {}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Set up the text body height      %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% For the text height, we calculate the largest number of lines that gives us no more than 4cm bottom margin.
-% This depends on the line spacing, which we need first.
+% BODY HEIGHT
+% Set up the text body height. For the text height, we calculate the largest number of
+% lines that gives us no more than 4cm bottom margin. This depends on the line spacing,
+% which we need first.
 
 \setstretch{\stretchfactor}
 
@@ -155,62 +112,75 @@
 \setlength{\textheight}{\scratchlength}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Make the title page etc          %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% DOCUMENT COMPONENTS
+% Provides the formatting for the required document components. Specifically, these are
+% the titlepage, declaration, dedication, abstract, and undergraduate project fulfilment.
 
 \renewcommand{\maketitle}{%
-  \begin{titlepage}
-    \singlespacing
-    \addtolength{\oddsidemargin}{-0.75cm}
-    \begin{center}
-    \null\vskip 4.1cm
-    \begin{minipage}[t][7.6cm]{10.5cm}
-      \begin{center}
-      {\LARGE\textbf{\@title}\par}\vfill
-      {\Large\textit{\@author}\par}
-      \end{center}
-    \end{minipage}
-    \vfill
-    {\Large\degreetext \par University of Edinburgh \par\@date \par}
-    \end{center}
-  \end{titlepage}
-  \if@twoside
-    \thispagestyle{empty}
-    \cleardoublepage
-  \else
-    \addtocounter{page}{1}
-  \fi
+    \begin{titlepage}
+        \singlespacing
+        \addtolength{\oddsidemargin}{-0.75cm}
+        \begin{center}
+            \null\vskip 4.1cm
+            \begin{minipage}[t][7.6cm]{10.5cm}
+                \begin{center}
+                    {\LARGE\textbf{\@title}\par}
+                    {\large{\@subtitle}}\vfill  % BUG doesn't work
+                    {\Large\textit{\@author}\par}
+                \end{center}
+            \end{minipage}
+            \vfill
+            {\Large\degreetext \par University of Edinburgh \par\@date \par}
+        \end{center}
+    \end{titlepage}
+    % For two-sided documents it's required that a blank page follow the title page. For
+    % one-sided documents it's required that the title page contribute to the page count.
+    \if@twoside
+        \thispagestyle{empty}
+        \cleardoublepage
+    \else
+        \addtocounter{page}{1}
+    \fi
 }
 
+
+% Declaration used for everything except year 4 projects
 \newcommand{\declaration}{%
-  \chapter*{Declaration}
-  \begin{singlespace}
-  I declare that this thesis was composed by myself 
-  and that the work contained therein is my own, 
-  except where explicitly stated otherwise in the text.
-  \end{singlespace}
-
-  {\raggedleft\vspace{2cm}(\textit{\@author})
-
-  }
+    % Declarations don't need a chapter number or adding to the contents page
+    \chapter*{Declaration}
+    \begin{singlespace}
+        I declare that this thesis was composed by myself
+        and that the work contained therein is my own,
+        except where explicitly stated otherwise in the text.
+    \end{singlespace}
+    {\raggedleft\vspace{2cm}(\textit{\@author})}
 }
 
-\renewenvironment{abstract}{\chapter*{\abstractname}}{\addcontentsline{toc}{chapter}{\abstractname}}
+% Declaration for year 4 project, argument is degree programme (e.g. MMath)
+\newcommand{\yfourdeclaration}[1]{%
+    \vfill
+    \noindent
+    This project report is submitted in partial fulfilment
+    of the requirements for the degree of \textit{#1}.
+}
+
+
+\renewenvironment{abstract}{
+    % Abstracts don't need a chapter number...
+    \chapter*{\abstractname}
+}{
+    % ...but do need adding to the contents page.
+    \addcontentsline{toc}{chapter}{\abstractname}
+}
+
 
 \newcommand{\dedication}[1]{%
-  \clearpage
-  \thispagestyle{plain}
-  \vspace*{7cm}
-  \begin{center}
-    \Large\it #1
-  \end{center}
-}
-
-%% A special declaration for Year 4 reports
-\newcommand{\yfourdeclaration}[1]{%
- \vfill
- \noindent
- This project report is submitted in partial fulfilment of the requirements for the degree of
- \textit{#1}.
+    % Handled dedications (e.g. 'For Alex', not aknowledgments)
+    \clearpage
+    \thispagestyle{plain}
+    \vspace*{7cm}
+    \begin{center}
+        \Large\it #1
+    \end{center}
 }

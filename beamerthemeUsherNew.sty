@@ -1,0 +1,121 @@
+%% Beamer template for USHER slides,
+%% See README.txt for info on how to use this file.
+\ProvidesPackage{beamerthemeUsherNew}
+\RequirePackage{amsfonts}
+\RequirePackage{graphicx}
+\RequirePackage{times}
+%  9:5 (approx), as in ppt template 
+
+\definecolor{UoEblue}{RGB}{0,50,95}
+
+\definecolor{USHERorange}{RGB}{204, 89, 17}
+\definecolor{USHERgreen}{RGB}{156, 154, 0}
+\definecolor{USHERblue}{RGB}{69, 126, 129}
+\definecolor{USHERGray}{rgb}{.392, .329, .329}
+
+
+%% choose one of the following:
+\newcommand{\beamer@Usher@color}{USHERorange}
+\DeclareOptionBeamer{colour}{\def\beamer@Usher@color{#1}}
+
+
+\newdimen\beamer@Usher@titleheight
+\beamer@Usher@titleheight=10ex
+\DeclareOptionBeamer{theight}{\beamer@Usher@titleheight=#1}
+
+\geometry{paperwidth=25.40cm, paperheight=19.05cm}
+
+\ProcessOptionsBeamer
+
+\newcommand\crule[3][\beamer@Usher@color]{\textcolor{#1}{\rule{#2}{#3}}}
+
+\setbeamerfont{title}{series=\bfseries,size=\fontsize{32}{36}}%
+\setbeamerfont{subtitle}{size=\fontsize{24}{28}}
+\setbeamerfont{author}{size={\fontsize{20}{24}}}
+\setbeamerfont{institute}{size=\fontsize{22}{26}}
+\setbeamerfont{pagexofy}{size=\tiny}
+\setbeamerfont{caption}{size=\Large}
+\setbeamerfont{frametitle}{family=\sffamily,series=\bfseries,size={\fontsize{23}{26}}}
+\setbeamerfont{itemize item}{family=\sffamily,size={\fontsize{16}{18}}}
+\setbeamerfont{itemize subitem}{family=\sffamily,size={\fontsize{16}{18}}}
+\setbeamertemplate{itemize/enumerate body begin}{\fontsize{16}{19}\selectfont}
+\setbeamertemplate{itemize/enumerate subbody begin}{\fontsize{16}{19}\selectfont}
+\AtBeginDocument{\fontsize{16}{19}\selectfont}
+
+%\setbeamertemplate{items}[ball]
+\setbeamertemplate{navigation symbols}{}
+\pgfdeclareimage[width=14.69cm]{white-tied-in}{white-tied-in}
+\pgfdeclareimage[width=4.65cm]{edinburgh-logo}{edinburgh-logo}
+\pgfdeclareimage[width=1.25cm]{little=u}{edinburgh-logo}
+\setbeamerfont{alerted text}{series=\bfseries}
+\setbeamercolor{alerted text}{fg=\beamer@Usher@color!80!black}
+\setbeamercolor{title}{fg=black}
+\setbeamercolor{normal text}{fg=black}
+\setbeamertemplate{itemize item}{\color{\beamer@Usher@color}$\bullet$}
+\setbeamertemplate{itemize
+      subitem}{\color{\beamer@Usher@color}$\circ$}
+
+
+\newcommand{\SetUsherTitleMargin}[1]{\beamer@Usher@titleheight=#1}
+\newcommand{\SetUsherTitleHeight}[1]{\beamer@Usher@titleheight=#1}
+
+
+\newlength\barheight\setlength\barheight{\paperheight}
+\divide\barheight by 12
+
+\setbeamertemplate{title page}
+{
+  \begin{minipage}{.6\linewidth}
+    \raggedright 
+    {\usebeamerfont{title}\textcolor{white}\inserttitle\par~}
+  \ifx\insertsubtitle\@empty\else%
+  \\[1ex]
+  {\usebeamerfont{subtitle}\textcolor{white}\insertsubtitle}
+  \fi
+  \\[3ex]
+  {\usebeamerfont{author}\textcolor{white}\insertauthor}
+  \ifx\insertinstitute\@empty\else%
+  \\[3ex]
+  {\\\usebeamerfont{institute}\textcolor{white}\insertinstitute}
+  \fi
+  \ifx\insertdate\empty\else%
+  \\[3ex]
+  \usebeamerfont{date}\textcolor{white}{\insertdate}
+  \fi
+\end{minipage}
+}
+%    \setbeamercolor{background canvas}{bg=USHERorange}
+\setbeamertemplate{background}{
+  \setlength{\unitlength}{1cm}
+  \ifnum\c@framenumber=1%
+  \begin{picture}(25.4,19.05)(0,0)
+    \put(-.1, 0){\crule[\beamer@Usher@color]{25.4cm}{19.05cm}}
+    \put(0.44, 0.1){\pgfuseimage{white-tied-in}}
+  \end{picture}
+   \else%
+   \begin{picture}(25.4,19.05)(0,0)
+     \put(23.5, 0){\crule[\beamer@Usher@color]{1.75cm}{19.05cm}}
+     \put(23.65, 17.3){\includegraphics[width=1.45cm,height=1.45cm]{edinburgh-logo}}
+   \end{picture}
+   \fi
+}
+
+\setbeamertemplate{frametitle}{
+   \ifnum\c@framenumber=1%
+     \empty%
+   \else
+     \vspace*{\beamer@Usher@titleheight}
+   \fi
+  \usebeamercolor[fg]{title}%
+  \usebeamerfont{title}\textcolor{black}{\insertframetitle}\vspace*{2ex}
+}
+
+%\newcommand{\ushersettitleheight}[1]{\makeatletter\beamer@Usher@titleheight=#1\makeatother}
+\setbeamersize{text margin left=2cm,text margin right=2.5cm}
+%% set top margin for each frame
+%\addtolength{\headsep}{1cm}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "sample"
+%%% End: 

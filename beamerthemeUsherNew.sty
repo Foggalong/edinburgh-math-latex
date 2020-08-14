@@ -6,12 +6,12 @@
 \RequirePackage{times}
 %  9:5 (approx), as in ppt template
 
+% Colour definitions
 \definecolor{UoEblue}{RGB}{0,50,95}
-
 \definecolor{USHERorange}{RGB}{204, 89, 17}
 \definecolor{USHERgreen}{RGB}{156, 154, 0}
 \definecolor{USHERblue}{RGB}{69, 126, 129}
-\definecolor{USHERGray}{rgb}{.392, .329, .329}
+\definecolor{USHERgray}{rgb}{.392, .329, .329}
 
 
 %% choose one of the following:
@@ -40,7 +40,7 @@
 \setbeamerfont{itemize subitem}{family=\sffamily,size={\fontsize{16}{18}}}
 \setbeamertemplate{itemize/enumerate body begin}{\fontsize{16}{19}\selectfont}
 \setbeamertemplate{itemize/enumerate subbody begin}{\fontsize{16}{19}\selectfont}
-\AtBeginDocument{\fontsize{16}{19}\selectfont}
+\AtBeginDocument{\fontsize{18}{19}\selectfont}
 
 %\setbeamertemplate{items}[ball]
 \setbeamertemplate{navigation symbols}{}
@@ -63,57 +63,82 @@
 \newlength\barheight\setlength\barheight{\paperheight}
 \divide\barheight by 12
 
-\setbeamertemplate{title page}
-{
-  \begin{minipage}{.6\linewidth}
+
+\setbeamertemplate{title page}{
     \raggedright
+    % TITLE
     {\usebeamerfont{title}\textcolor{white}\inserttitle\par~}
-  \ifx\insertsubtitle\@empty\else%
-  \\[1ex]
-  {\usebeamerfont{subtitle}\textcolor{white}\insertsubtitle}
-  \fi
-  \\[3ex]
-  {\usebeamerfont{author}\textcolor{white}\insertauthor}
-  \ifx\insertinstitute\@empty\else%
-  \\[3ex]
-  {\\\usebeamerfont{institute}\textcolor{white}\insertinstitute}
-  \fi
-  \ifx\insertdate\empty\else%
-  \\[3ex]
-  \usebeamerfont{date}\textcolor{white}{\insertdate}
-  \fi
-\end{minipage}
-}
-%    \setbeamercolor{background canvas}{bg=USHERorange}
-\setbeamertemplate{background}{
-  \setlength{\unitlength}{1cm}
-  \ifnum\c@framenumber=1%
-  \begin{picture}(25.4,19.05)(0,0)
-    \put(-.1, 0){\crule[\beamer@Usher@color]{25.4cm}{19.05cm}}
-    \put(0.44, 0.1){\pgfuseimage{white-tied-in}}
-  \end{picture}
-   \else%
-   \begin{picture}(25.4,19.05)(0,0)
-     \put(23.5, 0){\crule[\beamer@Usher@color]{1.75cm}{19.05cm}}
-     \put(23.65, 17.3){\includegraphics[width=1.45cm,height=1.45cm]{Images/edinburgh-logo}}
-   \end{picture}
-   \fi
+    % SUBTITLE
+    \ifx\insertsubtitle\@empty
+    \else%
+        \\[1ex]
+        {\usebeamerfont{subtitle}\textcolor{white}\insertsubtitle}
+    \fi
+    \\[6ex]
+    % AUTHOR
+    {\usebeamerfont{author}\textcolor{white}\insertauthor}
+    \ifx\insertinstitute\@empty
+    \else%
+        \\[3ex]
+        {\\\usebeamerfont{institute}\textcolor{white}\insertinstitute}
+    \fi
+    % DATE
+    \ifx\insertdate\empty
+    \else%
+        \\[1ex]
+        \usebeamerfont{date}\textcolor{white}{\insertdate}
+    \fi
 }
 
+
+\setbeamertemplate{background}{
+    \setlength{\unitlength}{1cm}
+    \begin{picture}(25.4,19.05)(0,0)
+        % on first slide add UoE text logo across bottom left
+        \ifnum\c@framenumber=1%
+            \put(-.1, 0){\crule[\beamer@Usher@color]{25.4cm}{19.05cm}}
+            \put(0.44, 0.1){\pgfuseimage{white-tied-in}}
+        % on ever other slide add UoE logo at top of blue sidebar
+        \else%
+            \put(23.5, 0){\crule[\beamer@Usher@color]{1.75cm}{19.05cm}}
+            \put(23.65, 17.3){\includegraphics[width=1.45cm,height=1.45cm]{Images/edinburgh-logo}}
+        \fi%
+        % add slide numbering to bottom right
+        \ifnum\c@framenumber<10%
+            \put(23.7,0.3){\centering\Large\color{white}{\phantom{0}\insertframenumber/\inserttotalframenumber}}
+        \else
+            \put(23.7,0.3){\centering\Large\color{white}{\insertframenumber/\inserttotalframenumber}}
+        \fi%
+   \end{picture}
+}
+
+
+% Default slide formatting
 \setbeamertemplate{frametitle}{
-   \ifnum\c@framenumber=1%
-     \empty%
-   \else
-     \vspace*{\beamer@Usher@titleheight}
-   \fi
-  \usebeamercolor[fg]{title}%
-  \usebeamerfont{title}\textcolor{black}{\insertframetitle}\vspace*{2ex}
+    % if not the starting fram, add a top margin
+    \ifnum\c@framenumber=1%
+        \empty%
+    \else
+        \vspace*{\beamer@Usher@titleheight}
+    \fi
+    % use the title colour from this class
+    \usebeamercolor[fg]{title}
+    % handle dituation where there's no subtitle
+    \ifx\insertframesubtitle\@empty
+        \usebeamerfont{frametitle}{\insertframetitle}
+    \else
+        \usebeamerfont{frametitle}{\insertframetitle:~{\normalfont\insertframesubtitle}}
+    \fi
+    % ensures spacing after the title
+    \vspace*{1em}
 }
 
 %\newcommand{\ushersettitleheight}[1]{\makeatletter\beamer@Usher@titleheight=#1\makeatother}
 \setbeamersize{text margin left=2cm,text margin right=2.5cm}
-%% set top margin for each frame
-%\addtolength{\headsep}{1cm}
+
+% Ensures images are compressed when brought in by PDF
+\pdfcompresslevel=9
+\pdfobjcompresslevel=3
 
 %%% Local Variables:
 %%% mode: latex

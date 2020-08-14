@@ -1,28 +1,49 @@
-%% In file.tex containing a Beamer presentation, Use \bnote{} so that
-%% your notes on slides get converted automatically into
-%% pdf-presenter-console notes (file.pdfpc)
-%% 
+%% Package `beamernotes' v0.97
+%%
+%% A package for writing speaker notes to acompany LaTeX Beamer presentations. In doc.tex
+%% containing a Beamer presentation, use the \bnote{} command to write any speaker notes.
+%% When the file is compiled your notes on slides get converted automatically into a notes
+%% file (doc.pdfpc), readable by pdf-presenter-console.
 
 \begingroup
-\catcode`\#=12
-\gdef\slidenumberprefix{### }%
+    \catcode`\#=12
+    \gdef\slidenumberprefix{### }%
 \endgroup
+
 \typeout{Starting beamer notes.}
+
+% Buffer to write notes into
 \let\BeamerNotesBuffer\empty
+% Keeps track of slide number
 \newcounter{BeamerNotesCounter}
-\newcommand{\bnote}[1]{\typeout{Creating note: #1}
-  \stepcounter{BeamerNotesCounter}%
-  \xdef\BeamerNotesBuffer{\BeamerNotesBuffer
-    ^^J\slidenumberprefix \theBeamerNotesCounter ^^J#1}%
-    \mode<article>{#1}}
+
+
+% Command for taking a note and adding it to the BeamerNotesBuffer
+\newcommand{\bnote}[1]{
+    \typeout{Creating note: #1}
+    \stepcounter{BeamerNotesCounter}%
+    \xdef\BeamerNotesBuffer{\BeamerNotesBuffer
+        ^^J\slidenumberprefix \theBeamerNotesCounter ^^J#1}%
+    \mode<article>{#1}
+}
+
+
+% Save contents of BeamerNotesBuffer to a file
 \AtEndDocument{%
-\newwrite\file
-\immediate\openout\file=\jobname.pdfpc
-\immediate\write\file{[file]^^J%
-\jobname.pdf^^J%
-[end_user_slide]^^J%
-\theBeamerNotesCounter^^J%
-[notes]%
-\BeamerNotesBuffer}
-\closeout\file
+    % open file for writing
+    \newwrite\file
+    \immediate\openout\file=\jobname.pdfpc
+
+    \immediate\write\file{
+        % pdfpc header
+        [file]^^J%
+        \jobname.pdf^^J%
+        [end_user_slide]^^J%
+        \theBeamerNotesCounter^^J%
+        % notes contents
+        [notes]%
+        \BeamerNotesBuffer
+    }
+    % save file
+    \closeout\file
 }

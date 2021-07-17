@@ -38,4 +38,4 @@ My abstract.
 \end{document}
 ```
 
-The stylesheet can be extended as needed but also comes with several inbuilt features, as showcased in the [beefier report example](https://github.com/Foggalong/edinburgh-math-latex/blob/master/example-report.tex) included.
+The stylesheet can be extended as needed but also comes with several inbuilt features, as showcased in the [beefier report example](https://github.com/Foggalong/edinburgh-math-latex/blob/master/example-report.tex) included. That example is a combination of the one included in the stylesheet's original documentation and the documentation for [year 5 reports](https://teaching.maths.ed.ac.uk/main/undergraduate/studies/honours/year-5/projects/reports).

@@ -1,34 +1,35 @@
-%% Beamer template for USHER slides,
-%% See README.txt for info on how to use this file.
-\ProvidesPackage{beamerthemeUsherNew}
-\RequirePackage{amsfonts}
-\RequirePackage{graphicx}
-\RequirePackage{lmodern}
-\RequirePackage{times}
-%  9:5 (approx), as in ppt template
+%% Package `edmaths' v0.97
+%%
+%% A LaTeX style file for typesetting presentations for the School of Mathematics at the
+%% University of Edinburgh. Originally written by Saturnino Luz for the Usher Institute
+%% and made generic to UoE by Ben Brown. It has since been updated by Josh Fogg (2020/21).
+%% See README.md for usage instructions.
 
-% Colour definitions
-\definecolor{UoEblue}{RGB}{0,50,95}
-\definecolor{USHERorange}{RGB}{204, 89, 17}
-\definecolor{USHERgreen}{RGB}{156, 154, 0}
-\definecolor{USHERblue}{RGB}{69, 126, 129}
-\definecolor{USHERgray}{rgb}{.392, .329, .329}
+\ProvidesPackage{beamerthemeedmaths}[2021-07-17 Edinburgh maths beamer theme v0.97]
+\RequirePackage{amsfonts,graphicx,lmodern,times}
 
+% Colour definitions to choose between
+\definecolor{UoEblue}{RGB}{0,50,95}           % #00325F
+\definecolor{UoEcyan}{RGB}{69, 126, 129}      % #457E81
+\definecolor{UoEgreen}{RGB}{156, 154, 0}      % #9C9A00
+\definecolor{UoEgray}{RGB}{.392, .329, .329}  % VARIES
+\definecolor{UoEorange}{RGB}{204, 89, 17}     % #CC5911
 
-%% choose one of the following:
-\newcommand{\beamer@Usher@color}{USHERorange}
-\DeclareOptionBeamer{colour}{\def\beamer@Usher@color{#1}}
+% Define colour command for use through rest of theme
+\newcommand{\beamer@UoE@color}{UoEblue}
+\DeclareOptionBeamer{colour}{\def\beamer@UoE@color{#1}}
 
+% Change title height to fit styling
+\newdimen\beamer@UoE@titleheight
+\beamer@UoE@titleheight=10ex
+\DeclareOptionBeamer{theight}{\beamer@UoE@titleheight=#1}
 
-\newdimen\beamer@Usher@titleheight
-\beamer@Usher@titleheight=10ex
-\DeclareOptionBeamer{theight}{\beamer@Usher@titleheight=#1}
-
+% Resolution is 9:5 (approx), as in ppt template
 \geometry{paperwidth=25.40cm, paperheight=19.05cm}
 
 \ProcessOptionsBeamer
 
-\newcommand\crule[3][\beamer@Usher@color]{\textcolor{#1}{\rule{#2}{#3}}}
+\newcommand\crule[3][\beamer@UoE@color]{\textcolor{#1}{\rule{#2}{#3}}}
 
 \setbeamerfont{title}{series=\bfseries,size=\fontsize{32}{36}}%
 \setbeamerfont{subtitle}{size=\fontsize{24}{28}}
@@ -49,16 +50,15 @@
 \pgfdeclareimage[width=4.65cm]{edinburgh-logo}{Images/edinburgh-logo}
 \pgfdeclareimage[width=1.25cm]{little=u}{Images/edinburgh-logo}
 \setbeamerfont{alerted text}{series=\bfseries}
-\setbeamercolor{alerted text}{fg=\beamer@Usher@color!80!black}
+\setbeamercolor{alerted text}{fg=\beamer@UoE@color!80!black}
 \setbeamercolor{title}{fg=black}
 \setbeamercolor{normal text}{fg=black}
-\setbeamertemplate{itemize item}{\color{\beamer@Usher@color}$\bullet$}
-\setbeamertemplate{itemize
-      subitem}{\color{\beamer@Usher@color}$\circ$}
+\setbeamertemplate{itemize item}{\color{\beamer@UoE@color}$\bullet$}
+\setbeamertemplate{itemize subitem}{\color{\beamer@UoE@color}$\circ$}
 
 
-\newcommand{\SetUsherTitleMargin}[1]{\beamer@Usher@titleheight=#1}
-\newcommand{\SetUsherTitleHeight}[1]{\beamer@Usher@titleheight=#1}
+\newcommand{\SetUoETitleMargin}[1]{\beamer@UoE@titleheight=#1}
+\newcommand{\SetUoETitleHeight}[1]{\beamer@UoE@titleheight=#1}
 
 
 \newlength\barheight\setlength\barheight{\paperheight}
@@ -97,11 +97,11 @@
     \begin{picture}(25.4,19.05)(0,0)
         % on first slide add UoE text logo across bottom left
         \ifnum\c@framenumber=1%
-            \put(-.1, 0){\crule[\beamer@Usher@color]{25.4cm}{19.05cm}}
+            \put(-.1, 0){\crule[\beamer@UoE@color]{25.4cm}{19.05cm}}
             \put(0.44, 0.1){\pgfuseimage{white-tied-in}}
         % on ever other slide add UoE logo at top of blue sidebar
         \else%
-            \put(23.5, 0){\crule[\beamer@Usher@color]{1.75cm}{19.05cm}}
+            \put(23.5, 0){\crule[\beamer@UoE@color]{1.75cm}{19.05cm}}
             \put(23.65, 17.3){\includegraphics[width=1.45cm,height=1.45cm]{Images/edinburgh-logo}}
         \fi%
         % add slide numbering to bottom right
@@ -120,11 +120,11 @@
     \ifnum\c@framenumber=1%
         \empty%
     \else
-        \vspace*{\beamer@Usher@titleheight}
+        \vspace*{\beamer@UoE@titleheight}
     \fi
     % use the title colour from this class
     \usebeamercolor[fg]{title}
-    % handle dituation where there's no subtitle
+    % handle situation where there's no subtitle
     \ifx\insertframesubtitle\@empty
         \usebeamerfont{frametitle}{\insertframetitle}
     \else
@@ -134,7 +134,7 @@
     \vspace*{1em}
 }
 
-%\newcommand{\ushersettitleheight}[1]{\makeatletter\beamer@Usher@titleheight=#1\makeatother}
+%\newcommand{\UoEsettitleheight}[1]{\makeatletter\beamer@UoE@titleheight=#1\makeatother}
 \setbeamersize{text margin left=2cm,text margin right=2.5cm}
 
 % Ensures images are compressed when brought in by PDF

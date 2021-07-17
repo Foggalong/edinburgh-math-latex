@@ -1,0 +1,55 @@
+\documentclass[12pt,twoside]{report}
+
+\title{Thesis Title}
+\author{Author Name}
+\date{YYYY}
+
+\usepackage[phd,fourier,hyperref,colour,fancyhdr]{edmaths}
+
+
+\begin{document}
+
+\flushbottom
+\pagenumbering{roman}
+
+\maketitle
+
+\declaration{}
+
+\begin{abstract}
+The abstract goes here.
+\end{abstract}
+
+\dedication{In memory of my sanity.}
+
+
+\tableofcontents
+% Uncomment to add 'Contents' entry to contents page 
+% \addcontentsline{toc}{chapter}{Contents}
+
+\newpage
+\pagenumbering{arabic}
+
+\chapter{First Chapter}
+
+This is an example of a report made using the \texttt{edmaths} stylesheet~\cite{koeppe2007}, which is designed to ensure compliance with the University of Edinburgh's typesetting requirements for reports and theses.
+
+\section{First section}
+
+\section{Second section}
+
+
+\chapter{Second Chapter}
+
+\appendix
+
+\chapter{First Appendix}
+
+
+\bibliography{example-references}
+\addcontentsline{toc}{chapter}{Bibliography}
+% Choose a reference style from https://verbosus.com/bibtex-style-examples.html
+\bibliographystyle{ieeetr}
+% Or use the `amsrefs' package, https://ams.org/tex/amsrefs.html
+
+\end{document}

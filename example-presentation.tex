@@ -1,0 +1,75 @@
+\documentclass{beamer}
+\usetheme[colour=UoEblue]{UsherNew}
+%% Alternative options are:
+% \usetheme[colour=USHERgreen]{UsherNew}
+% \usetheme[colour=USHERblue]{UsherNew}
+\usepackage{beamernotes}
+\usepackage{lipsum}
+\pdfcompresslevel=9
+\pdfobjcompresslevel=3
+
+\title[Insert Title (short version of title)]{Title of Presentation}
+\subtitle{Insert Subtitle (Optional)}  % Optional
+\author{Author Name}
+\date{n\textsuperscript{th} Month YYYY}
+
+\begin{document}
+
+
+\begin{frame}
+    \titlepage{}
+\end{frame}
+\bnote{
+    This generates notes for pdfpc. These notes also appear
+    on the handout/article versions.
+}
+
+
+\begin{frame}[t]{Header title bold}\label{sec:Slide1}
+    Main body text Sans. Here is a way to \alert{highlight text}.
+    \begin{itemize}
+    \item Bullet points
+    \item Sub-lists\ldots
+        \begin{itemize}
+            \item subitem
+        \end{itemize}
+    \item \lipsum[2]
+    \end{itemize}
+\end{frame}
+\bnote{
+    This is a note for the first slide. Mention how
+}
+
+
+\begin{frame}{Inserting a figure, some maths\ldots}
+    Example of a reference to another part of the presentation (slide~\ref{sec:Slide1}). Also an example of a slide not vertically aligned to top.\newline
+
+    \begin{itemize}
+        \item Here's a figure:
+            \begin{figure}[h]
+                \centering
+                \colorbox{blue}{\includegraphics[width=.13\linewidth]{Images/edinburgh-logo}}
+                \caption{The University of Edinburgh's logo}\label{fig:edinburgh-logo}
+            \end{figure}
+        \item And here's a famous equation:
+            \begin{eqnarray}
+                \label{eq:schroedinger}
+                i\hbar {\frac{\partial}{\partial t}}|\psi (t)\rangle ={\hat{H}}|\psi (t)\rangle
+            \end{eqnarray}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]{References}
+    The stylesheet {\bf\texttt{edmaths.sty}} provides a styling for LaTeX{} documents which satisfies University of Edinburgh requirements~\cite{koeppe2007}. \newline        
+
+    \lipsum[4]\newline
+
+    References can be added to the bottom of slides, or on a new slide.
+    \vfill 
+    \bibliography{example-references}
+    \bibliographystyle{ieeetr}
+\end{frame}
+
+
+\end{document}

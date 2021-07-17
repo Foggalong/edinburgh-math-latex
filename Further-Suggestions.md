@@ -10,7 +10,7 @@ Aside from the basics implemented by these packages and mentioned [in the README
 
 - Use `\pagenumbering{roman}` and `\pagenumbering{arabic}` to get different page numbers for the front matter.
 
-- Use `\listoftables” and `\listoffigures` to create a reference of all table and figure environments.
+- Use `\listoftables` and `\listoffigures` to create a reference of all table and figure environments.
 
 - Use the `ccaption` package to customise the way that captions under figures and tables appear (e.g. if you prefer a sans-serif font).
 

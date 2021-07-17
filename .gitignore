@@ -251,6 +251,9 @@ TSWLatexianTemp*
 # LyX
 *.lyx~
 
+# VS Code
+.vscode
+
 # Kile
 *.backup
 

@@ -3,7 +3,7 @@ As well as the beefier example bundled in this repository, there's a simpler exa
 ```latex
 \documentclass{beamer}
 % this is the default; options green and blue are also available
-\usetheme{UsherNew}
+\usetheme{edmaths}
 
 \title[Short Title]{A Long and verbose title}
 \subtitle{and a sub-title}

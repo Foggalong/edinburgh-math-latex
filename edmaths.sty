@@ -91,6 +91,8 @@
     \RequirePackage{fancyhdr}
     \pagestyle{fancy}
     \fancyhf{}
+    % NOTE if this is used without `twoside` in \documentclass{...} then fancyhdr will
+    % complain that the 'E' used here is useless.  
     \fancyhead[RO,LE]{\thepage}
     \fancyfoot[RO,LE]{\thepage}
     \fancyhead[LO]{\it\@title}

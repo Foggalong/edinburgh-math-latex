@@ -26,7 +26,7 @@
 % Textheight delayed until we know the line spacing.
 
 % The following is removed in favour of the `report' class options "oneside/twoside".
-%\@twosidefalse \@mparswitchfalse  % Single-sided by default
+% \@twosidefalse \@mparswitchfalse  % Single-sided by default
 
 
 
@@ -51,6 +51,7 @@
 \DeclareOption{secondyear}{\renewcommand{\degreetext}{Second-Year Report\\Graduate School of Mathematics}}
 \DeclareOption{thirdyear}{\renewcommand{\degreetext}{Third-Year Report\\Graduate School of Mathematics}}
 \DeclareOption{y4project}{\renewcommand{\degreetext}{Year 4 Project\\School of Mathematics}}
+\DeclareOption{mmath}{\renewcommand{\degreetext}{Master of Mathematics with Honours \\ School of Mathematics}}
 \DeclareOption{masterph}{\renewcommand{\degreetext}{Master of Philosophy}}
 \DeclareOption{mastersc}{\renewcommand{\degreetext}{Master of Science by Research}}
 
@@ -61,8 +62,8 @@
 \DeclareOption{double}{\renewcommand{\stretchfactor}{2}}
 
 % Options relating to having single or double sided documents
-%\DeclareOption{oneside}{\@twosidefalse \@mparswitchfalse}  % Single-sided by default
-%\DeclareOption{twosides}{\@twosidetrue \@mparswitchtrue}
+% \DeclareOption{oneside}{\@twosidefalse \@mparswitchfalse}  % Single-sided by default
+% \DeclareOption{twosides}{\@twosidetrue \@mparswitchtrue}
 
 
 \ProcessOptions
@@ -107,7 +108,7 @@
 \setstretch{\stretchfactor}
 
 % Debug only: In the next line, \XXXfactor contains the number of lines on a text-only page.
-%\newlength{\XXXunit}\setlength{\XXXunit}{1pt}\newlength{\XXXfactor}\setlength{\XXXfactor}{1pt + ((672pt - \topskip) / \baselineskip) * \XXXunit}
+% \newlength{\XXXunit}\setlength{\XXXunit}{1pt}\newlength{\XXXfactor}\setlength{\XXXfactor}{1pt + ((672pt - \topskip) / \baselineskip) * \XXXunit}
 \newlength{\scratchlength}\setlength{\scratchlength}{\topskip + ((672pt - \topskip) / \baselineskip) * \baselineskip + \baselineskip}
 \setlength{\textheight}{\scratchlength}
 
@@ -126,7 +127,6 @@
             \begin{minipage}[t][7.6cm]{10.5cm}
                 \begin{center}
                     {\LARGE\textbf{\@title}\par}
-                    % {\large{\@subtitle}}\vfill  % BUG doesn't work
                     {\Large\textit{\@author}\par}
                 \end{center}
             \end{minipage}

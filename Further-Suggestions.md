@@ -4,7 +4,7 @@ Aside from the basics implemented by these packages and mentioned [in the README
 
 - If you like custom line spacing, place `\newcommand{\stretchfactor}{<x>}` before calling this package, where `<x>` is the line spacing factor (1 = single spacing).
 
-- `Put “\flushbottom” right after “\begin{document}” to obtain vertically justified pages.`
+- Put `\flushbottom` right after `\begin{document}` to obtain vertically justified pages.
 
 - More hardcore: The very brave can also add `\setlength{\parskip}{0pt}` in the preamble to remove any vertical rubber space between paragraphs, thus enforcing a strict grid layout. If you encounter underful boxes, add `\vfills` where necessary, most likely after headings (i.e. use `\chapter(Introduction}\vfill` etc.).
 

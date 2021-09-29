@@ -61,30 +61,30 @@ The default theme `\usetheme{edmaths}` gives is 'UoE Blue', `#00325F`, but there
 
 These files are bundled with an example report and presentation, as well as a bibliography file for use across both. There are also simple examples of a [report](https://github.com/Foggalong/edinburgh-math-latex/wiki/Example-Report) and [presentation](https://github.com/Foggalong/edinburgh-math-latex/wiki/Example-Presentation) in the project wiki, as well as some [further formatting suggestions](https://github.com/Foggalong/edinburgh-math-latex/wiki/Further-Suggestions).
 
-## Beamer Notes
+## Presentation Notes
 
-If you use [pdf-presenter-console](https://pdfpc.github.io/), a
-presenter console with multi-monitor support for PDF files, you can use
+It's handy to be able to add slide notes which can be viewed while presenting. While there are [various ways](https://github.com/Foggalong/edinburgh-math-latex/wiki/Beamer-Notes) of doing this, [PDFPC](https://pdfpc.github.io/) is a presenter console with multi-monitor support and an [official package](https://github.com/pdfpc/latex-pdfpc) for adding such notes.
 
-```latex
-\usepackage{beamernotes}
-```
-
-and enter slide notes as in
+To use it simply add
 
 ```latex
-\bnote{my notes}
+\usepackage[overridenote=true]{pdfpc}
 ```
 
-_after_ the `frame` you want to annotate. The contents will generate a `filename.pdfpc` file containing
-all notes to be shown by pdfpc. Note that **this does not support newlines**.
+in the document header and enter slide notes as
+
+```latex
+\note{Some wonderful note.}
+```
+
+_after_ each `frame` you want to annotate. These notes will then be included as comments with the compiled PDF. Note that the only formatting supported is using `\\` to add newlines.
 
 ## Authors
 
 While [Josh Fogg](https://github.com/Foggalong) maintains these versions, they would not have been possible without the work of:
 
 - [Thomas Köppe](https://github.com/tkoeppe), wrote the original `edmaths` style file;
-- [Saturnino Luz](https://www.ed.ac.uk/profile/saturnino-luz), created the original `beamernotes` and Beamer template for the [Usher Institute](https://www.ed.ac.uk/usher);
+- [Saturnino Luz](https://www.ed.ac.uk/profile/saturnino-luz), created the Beamer template for the [Usher Institute](https://www.ed.ac.uk/usher);
 - [Ben Brown](https://github.com/bencwbrown), modified the Beamer theme for general UoE usage.
 
 Issues can be flagged [on GitHub](https://github.com/Foggalong/edinburgh-math-latex/issues) by [by email](mailto:j.fogg@ed.ac.uk). The license for the Beamer files is LPPL 3c. The licenses for all other files are [unknown](https://github.com/Foggalong/edinburgh-math-latex/issues/1).

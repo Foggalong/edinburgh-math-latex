@@ -20,7 +20,11 @@ These have the upside that you have full access to LaTeX formatting when writing
 
 ## PDFPC's `\note`
 
-[PDFPC](https://pdfpc.github.io/) is a presenter console with multi-monitor support for PDF files. There's an [official package](https://github.com/pdfpc/latex-pdfpc) from PDFPC for adding meta-data to presentation files which are compatible with their presenter console. doing this. Use
+[PDFPC](https://pdfpc.github.io/) is a presenter console with multi-monitor support for PDF files. There's an [official package](https://github.com/pdfpc/latex-pdfpc) from PDFPC for adding meta-data to presentation files which are compatible with their presenter console. The screenshot below shows how the console looks when viewing the example presentation.
+
+![PDFPC in presenting mode](https://user-images.githubusercontent.com/5920259/135314525-0718ea0b-9aa9-4628-ae99-44ebca385bbd.png)
+
+To use this add
 
 ```latex
 \usepackage[overridenote=true]{pdfpc}

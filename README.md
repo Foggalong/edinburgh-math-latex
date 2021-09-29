@@ -3,8 +3,7 @@
 LaTeX styles files for School of Math, University of Edinburgh. This includes:
 
 - [edmaths.sty](#Report-Stylesheet), report and thesis stylesheet,
-- [beamerthemeedmaths.sty](#Beamer-Theme), presentation theme,
-- [beamernotes.sty](#Beamer-Notes), for [pdfpc](https://pdfpc.github.io/) compatible presentation notes.
+- [beamerthemeedmaths.sty](#Beamer-Theme), presentation theme.
 
 To use, download the files and store them either with your `.tex` file(s) or in any directory that's findable by LaTeX (e.g. `$TEXINPUTS`).
 

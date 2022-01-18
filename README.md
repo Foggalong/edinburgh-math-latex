@@ -83,7 +83,11 @@ _after_ each `frame` you want to annotate. These notes will then be included as 
 While [Josh Fogg](https://github.com/Foggalong) maintains these versions, they would not have been possible without the work of:
 
 - [Thomas Köppe](https://github.com/tkoeppe), wrote the original `edmaths` style file;
-- [Saturnino Luz](https://www.ed.ac.uk/profile/saturnino-luz), created the Beamer template for the [Usher Institute](https://www.ed.ac.uk/usher);
+- [Saturnino Luz](https://www.ed.ac.uk/profile/saturnino-luz), created the [Beamer template](https://www.overleaf.com/latex/templates/usher-beamer-theme-new/pwjqsqkzhtsy) for the [Usher Institute](https://www.ed.ac.uk/usher);
 - [Ben Brown](https://github.com/bencwbrown), modified the Beamer theme for general UoE usage.
 
-Issues can be flagged [on GitHub](https://github.com/Foggalong/edinburgh-math-latex/issues) by [by email](mailto:j.fogg@ed.ac.uk). The license for the Beamer files is LPPL 3c. The licenses for all other files are [unknown](https://github.com/Foggalong/edinburgh-math-latex/issues/1).
+Issues can be flagged [on GitHub](https://github.com/Foggalong/edinburgh-math-latex/issues) by [by email](mailto:j.fogg@ed.ac.uk).
+
+## Licenses
+
+The stylesheets [edmaths.sty](edmaths.sty) and [beamerthemeedmaths.sty](beamerthemeedmaths.sty) are provided under the [LaTeX Project Public License v1.3c](https://choosealicense.com/licenses/lppl-1.3c/) (LPPL). The examples [example-presentation.tex](example-presentation.tex) and [example-report.tex](example-report.tex) are provided under the [BSD Zero Clause License](https://choosealicense.com/licenses/0bsd/) (0BSD). The images [edinburgh-logo](Images/edinburgh-logo.svg) and [white-tied-in](Images/white-tied-in.svg) are registered trademarks; they are not to be used as part of derived or independent works without the permission of The University of Edinburgh. This does not affect use as part of compiled LaTeX documents using this stylesheet for the university.

@@ -107,13 +107,21 @@
     \RequirePackage{fancyhdr}
     \pagestyle{fancy}
     \fancyhf{}
-    % NOTE if this is used without `twoside` in \documentclass{...} then fancyhdr will
-    % complain that the 'E' used here is useless.  
-    \fancyhead[RO,LE]{\thepage}
-    \fancyfoot[RO,LE]{\thepage}
-    \fancyhead[LO]{\it\@title}
-    \fancyhead[RE]{\@author}
-    \fancyfoot[RE,LO]{}
+    % if \fancyhead or \fancyfoot are used without `twoside` in \documentclass{...} then
+    % fancyhdr will complain that the 'E' used here is useless, so need to condition.
+    \if@twoside%
+        %%% put the stuff for true here (twoside=true)
+        \fancyhead[RO,LE]{\thepage}
+        \fancyfoot[RO,LE]{\thepage}
+        \fancyhead[LO]{\it\@title}
+        \fancyhead[RE]{\@author}
+        \fancyfoot[RE,LO]{}
+    \else%
+        %%% put the stuff for false here (twoside=false)
+        \fancyhead[LO]{\it\@title~~$\cdot$~~\@author}
+        \fancyhead[R]{\thepage}
+        \fancyfoot[R,LO]{}
+    \fi%  
 } {}
 
 

@@ -36,7 +36,7 @@ Here `<options>` is a comma-separated list of the following keywords:
 | `fourier` | This provides much improved typography by activating the fourier font package (based on [Adobe’s Utopia](https://fonts.adobe.com/fonts/utopia) family) along with the [cmap](https://www.ctan.org/pkg/cmap) and [microtype](https://www.ctan.org/pkg/microtype) packages; all those are required for this option. |
 | `hyperref` | If the [hyperref](https://www.ctan.org/pkg/hyperref) and [xcolor](https://www.ctan.org/pkg/xcolor) packages are installed, this creates PDF output with clickable and all-black links. The packages are set up with sane default options, but to modify the behaviour, simply use the `\hypersetup` command; see the `hyperref` documentation for details. |
 | `colour` | If the `hyperref` option is used, this sets clickable links to have a sane default colour (sepia for internal links, blue for external URLs). |
-| `fancyhdr` | If the [fancyhdr](https://www.ctan.org/pkg/fancyhdr) package is installed, this creates nice page headers and footers (with sane default settings); to modify this behaviour, simply use the commands described in the `fancyhdr` documentation. This may produce warnings if used without `twoside` in the `documentclass`.
+| `fancyhdr` | If the [fancyhdr](https://www.ctan.org/pkg/fancyhdr) package is installed, this creates nice page headers and footers (with sane default settings); to modify this behaviour, simply use the commands described in the `fancyhdr` documentation.
 
 ### Usage
 

@@ -9,7 +9,7 @@ To use, download the files and store them either with your `.tex` file(s) or in 
 
 ## Report Stylesheet
 
-When working on a report or thesis, an easy way to implement the University’s typesetting rules in LaTeX is provided by [edmaths.sty](https://github.com/Foggalong/edinburgh-math-latex/blob/master/edmaths.sty). It sets the page margins as required and defines commands to create the correct cover page and standard declaration.
+When working on a report or thesis, an easy way to implement the [University’s typesetting rules](https://www.ed.ac.uk/academic-services/students/thesis-submission) in LaTeX is provided by [edmaths.sty](https://github.com/Foggalong/edinburgh-math-latex/blob/master/edmaths.sty). It sets the page margins as required and defines commands to create the correct cover page and standard declaration.
 
 It also loads the [amsmath](https://www.ctan.org/pkg/amsmath), [amsthm](https://www.ctan.org/pkg/amsthm), [amscd](https://www.ctan.org/pkg/amscd), and [amssymb](https://ctan.org/pkg/amsfonts) packages, which are required by almost all mathematical publications. Through [setspace](https://www.ctan.org/pkg/setspace), line spacing settings are available that only affect the body text and not footnotes and captions.
 

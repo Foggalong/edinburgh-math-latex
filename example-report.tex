@@ -14,6 +14,8 @@
 
 \usepackage[phd,fourier,hyperref,colour,fancyhdr]{edmaths}
 
+%\shorttitle{Short title} % You can optionally define a shorter version of your title for the headers if you use the fancyhdr option.
+
 
 \begin{document}
 
@@ -22,13 +24,27 @@
 
 \maketitle
 
-\declaration{}
+\begin{declaration}
+	I declare that this thesis has been composed solely by myself and that it has not been
+	submitted, in whole or in part, in any previous application for a degree. Except where
+	stated otherwise by reference or acknowledgement, the work presented is entirely my
+	own.
+%	 Required for PhD theses. This declaration should be tailored to your thesis. If your thesis includes previously-published work, it should be declared on this page. See https://www.ed.ac.uk/sites/default/files/atoms/files/thesis_signed_declaration.pdf.
+\end{declaration}
 
 \begin{abstract}
-The abstract goes here.
+	The abstract goes here.
 \end{abstract}
 
+\begin{laysummary}
+	A lay summary is required for PhD theses. See \href{https://www.ed.ac.uk/sites/default/files/atoms/files/lay_summary_in_theses.pdf}{this page on the University website}.
+\end{laysummary}
+
 \dedication{In memory of my sanity.}
+
+\begin{acknowledgements}
+	I'd like to thank my supervisor for putting up with me for four years.
+\end{acknowledgements}
 
 
 \tableofcontents

@@ -27,7 +27,7 @@
 
 
 
-% PAGE SIZE AND MARING
+% PAGE SIZE AND MARGINS
 % These settings control the size of the page and its margins. All measurements are
 % compliant wih the school's typesetting requirements.
 
@@ -52,10 +52,14 @@
 
 % Options relating to external packages
 \newboolean{with-fourier}   % Use the `fourier' package for Adobe Utopia font
+\newboolean{with-cmbright}   % Use the `cmbright' package for Computer Modern Bright (sans serif) font
+\newboolean{with-comicsans}   % :)
 \newboolean{with-hyperref}  % Use the `hyperref' package for hyperlinks and bookmarks, all black
 \newboolean{with-colour}    % Add sane colours to the hyperref links
 \newboolean{with-fancyhdr}  % Use the `fancyhdr' package to provide header and footer
 \DeclareOption{fourier}{\setboolean{with-fourier}{true}}
+\DeclareOption{cmbright}{\setboolean{with-cmbright}{true}}
+\DeclareOption{comicsans}{\setboolean{with-comicsans}{true}}
 \DeclareOption{hyperref}{\setboolean{with-hyperref}{true}}
 \DeclareOption{colour}{\setboolean{with-colour}{true}}
 \DeclareOption{fancyhdr}{\setboolean{with-fancyhdr}{true}}
@@ -63,9 +67,9 @@
 % Options relating to document type (thesis, report, etc)
 \ifthenelse{\isundefined{\degreetext}}{\newcommand{\degreetext}{Specify a degree option!}}{}
 \DeclareOption{phd}{\renewcommand{\degreetext}{Doctor of Philosophy}}
-\DeclareOption{firstyear}{\renewcommand{\degreetext}{First-Year Report\\Graduate School of Mathematics}}
-\DeclareOption{secondyear}{\renewcommand{\degreetext}{Second-Year Report\\Graduate School of Mathematics}}
-\DeclareOption{thirdyear}{\renewcommand{\degreetext}{Third-Year Report\\Graduate School of Mathematics}}
+\DeclareOption{firstyear}{\renewcommand{\degreetext}{First-Year Report\\Maxwell Institute Graduate School}}
+\DeclareOption{secondyear}{\renewcommand{\degreetext}{Second-Year Report\\Maxwell Institute Graduate School}}
+\DeclareOption{thirdyear}{\renewcommand{\degreetext}{Third-Year Report\\Maxwell Institute Graduate School}}
 \DeclareOption{y4project}{\renewcommand{\degreetext}{Year 4 Project\\School of Mathematics}}
 \DeclareOption{mmath}{\renewcommand{\degreetext}{Master of Mathematics with Honours \\ School of Mathematics}}
 \DeclareOption{masterph}{\renewcommand{\degreetext}{Master of Philosophy}}
@@ -92,6 +96,20 @@
     \RequirePackage{microtype}
 } {}
 
+% If with-cmbright selected, use the (sans-serif) Computer Modern Bright font.
+\ifthenelse{\boolean{with-cmbright}}{
+    \RequirePackage{cmap}
+    \RequirePackage{cmbright}
+    \RequirePackage[T1]{fontenc}
+    \RequirePackage{microtype}
+} {}
+
+% :)
+\ifthenelse{\boolean{with-comicsans}}{
+	\usepackage{fontspec}
+	\setmainfont{Comic Sans MS}
+} {}
+
 % If with-hyperref selected, configure its default settings
 \ifthenelse{\boolean{with-hyperref}}{
     \RequirePackage[dvipsnames]{xcolor}
@@ -105,6 +123,9 @@
 % If with-fancyhdr selected, use it to provide fancier headers and footers
 \ifthenelse{\boolean{with-fancyhdr}}{
     \RequirePackage{fancyhdr}
+    % Define a short title for use in headers if title is too long. Default is the same as title. Usage: use command \shortitle{<your short title here>} *after* calling edmaths.
+    \newcommand\@shorttitle{\@title}
+    \newcommand\shorttitle[1]{\renewcommand\@shorttitle{#1}}
     \pagestyle{fancy}
     \fancyhf{}
     % if \fancyhead or \fancyfoot are used without `twoside` in \documentclass{...} then
@@ -113,12 +134,12 @@
         %%% put the stuff for true here (twoside=true)
         \fancyhead[RO,LE]{\thepage}
         \fancyfoot[RO,LE]{\thepage}
-        \fancyhead[LO]{\it\@title}
+        \fancyhead[LO]{\it\@shorttitle}
         \fancyhead[RE]{\@author}
         \fancyfoot[RE,LO]{}
     \else%
         %%% put the stuff for false here (twoside=false)
-        \fancyhead[LO]{\it\@title~~$\cdot$~~\@author}
+        \fancyhead[LO]{\it\@shorttitle~~$\cdot$~~\@author}
         \fancyhead[R]{\thepage}
         \fancyfoot[R,LO]{}
     \fi%  
@@ -157,7 +178,7 @@
                 \end{center}
             \end{minipage}
             \vfill
-            {\Large\degreetext \par University of Edinburgh \par\@date \par}
+            {\Large\degreetext \par The University of Edinburgh \par\@date \par}
         \end{center}
     \end{titlepage}
     % For two-sided documents it's required that a blank page follow the title page. For
@@ -172,14 +193,11 @@
 
 
 % Declaration used for everything except year 4 projects
-\newcommand{\declaration}{%
-    % Declarations don't need a chapter number or adding to the contents page
+\newenvironment{declaration}{
+    % The declaration should be adapted to reflect the nature of the document.
     \chapter*{Declaration}
     \begin{singlespace}
-        I declare that this thesis was composed by myself
-        and that the work contained therein is my own,
-        except where explicitly stated otherwise in the text.
-    \end{singlespace}
+}{	\end{singlespace}
     {\raggedleft\vspace{2cm}(\textit{\@author})}
 }
 
@@ -198,6 +216,22 @@
 }{
     % ...but do need adding to the contents page.
     \addcontentsline{toc}{chapter}{\abstractname}
+}
+
+
+\newenvironment{laysummary}{
+    % A lay summary is required for PhD theses and is not included in the page count. We treat it in a similar way to the abstract here.
+    \chapter*{Lay Summary}
+}{
+    \addcontentsline{toc}{chapter}{Lay Summary}
+}
+
+
+\newenvironment{acknowledgements}{
+    % Acknowledgements environment similar to abtract and lay summary.
+    \chapter*{Acknowledgements}
+}{
+    \addcontentsline{toc}{chapter}{Acknowledgements}
 }
 
 

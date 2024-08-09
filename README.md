@@ -2,8 +2,8 @@
 
 LaTeX styles files for School of Math, University of Edinburgh. This includes:
 
-- [edmaths.sty](#Report-Stylesheet), report and thesis stylesheet,
-- [beamerthemeedmaths.sty](#Beamer-Theme), presentation theme.
+- [edmaths.sty](#report-stylesheet), report and thesis stylesheet,
+- [beamerthemeedmaths.sty](#beamer-theme), presentation theme.
 
 To use, download the files and store them either with your `.tex` file(s) or in any directory that's findable by LaTeX (e.g. `$TEXINPUTS`).
 
@@ -25,23 +25,35 @@ The basic package has no special requirements, but if you have certain additiona
 2. Define `\title{…}`, `\author{…}`, and `\date{…}`.
 3. Add the line `\usepackage[<options>]{edmaths}` to your preamble.
 
-The steps must be in order or you will get errors.
+The steps **must** be in order or you will get errors.
 
 Here `<options>` is a comma-separated list of the following keywords:
 
 | Keyword | Effect |
 | :------ | :----- |  
-| One of `firstyear`, `secondyear`, `thirdyear`, `fourthyear`, `phd`, `masterph`, or `mastersc` for postgrad projects, or `mmath` or `y4project` for undergraduate projects. | Prints the correct degree name or report type on the cover page. If you do not specify any of these, set `\degreetext` manually before including this package, e.g. `\newcommand{\degreetext}{Internal Report}` |
+| Exactly one of `firstyear`, `secondyear`, `thirdyear`, `fourthyear`, `phd`, `masterph`, or `mastersc` for postgrad projects, or `mmath` or `y4project` for undergraduate projects. | Prints the correct degree name or report type on the cover page. If you do not specify any of these, set `\degreetext` manually before including this package, e.g. `\newcommand{\degreetext}{Internal Report}` |
 | `single`, `onehalf`, or `double` | Set line spacing of the body text to single, one-half and double spaced, respectively. Check out [setspace](https://www.ctan.org/pkg/setspace) for custom spacing options. |
 | `fourier` | This provides much improved typography by activating the fourier font package (based on [Adobe’s Utopia](https://fonts.adobe.com/fonts/utopia) family) along with the [cmap](https://www.ctan.org/pkg/cmap) and [microtype](https://www.ctan.org/pkg/microtype) packages; all those are required for this option. |
 | `cmbright` | Strictly speaking thesis guidelines require a sans serif font, though this is not enforced. If you do want to use one though, this sets the font to [Computer Modern Bright](https://tug.org/FontCatalogue/computermodernbright/). This requires the [cmbright](https://ctan.org/pkg/cmbright), [cmap](https://www.ctan.org/pkg/cmap), [microtype](https://www.ctan.org/pkg/microtype), and [fontenc](https://ctan.org/pkg/fontenc), the latter also meaning the compiler must be [XeTeX](https://xetex.sourceforge.net/) or [LuaTeX](https://www.luatex.org). |
 | `hyperref` | If the [hyperref](https://www.ctan.org/pkg/hyperref) and [xcolor](https://www.ctan.org/pkg/xcolor) packages are installed, this creates PDF output with clickable and all-black links. The packages are set up with sane default options, but to modify the behaviour, simply use the `\hypersetup` command; see the `hyperref` documentation for details. |
 | `colour` | If the `hyperref` option is used, this sets clickable links to have a sane default colour (sepia for internal links, blue for external URLs). |
-| `fancyhdr` | If the [fancyhdr](https://www.ctan.org/pkg/fancyhdr) package is installed, this creates nice page headers and footers (with sane default settings); to modify this behaviour, simply use the commands described in the `fancyhdr` documentation.
+| `fancyhdr` | If the [fancyhdr](https://www.ctan.org/pkg/fancyhdr) package is installed, this creates nice page headers and footers (with sane default settings); to modify this behaviour, simply use the commands described in the `fancyhdr` documentation. |
 
 ### Usage
 
-Once `edmaths` is set up, use `\maketitle` to create the cover page, `\declaration` to create the standard declaration, `\dedication{…}` for a dedication page, the `\begin{abstract}…\end{abstract}` environment for the abstract, and `\tableofcontents` for the table of contents. To redefine the title of the abstract, use `\renewcommand{\abstractname}{My New Title}`.
+Once `edmaths` is set up, the following additional formatting commands and environments become available:
+
+- `\maketitle` to create the cover page,
+- `\declaration{…}` to create the declaration,
+- `\dedication{…}` for a dedication page,
+- the `\begin{abstract}…\end{abstract}` environment for the abstract,
+- the `\begin{laysummary}…\end{laysummary}` environment for the [lay summary](https://www.ed.ac.uk/sites/default/files/atoms/files/lay_summary_in_theses.pdf),
+- the `\begin{acknowledgements}…\end{acknowledgements}` for any acknowledgements,
+- and `\tableofcontents` for the table of contents.
+
+If you want to redefine the title of the abstract, use `\renewcommand{\abstractname}{My New Title}`.
+
+If your `\title` is quite long and you're using `fancyhdr`, you may also wish to define a `\shorttitle{…}` to prevent wrapping. This **must** be done after `\usepackage[<options>]{edmaths}` else it will cause an error.
 
 When using the `y4project` option, the command `\yfourdeclaration{…}` can be used right after the abstract to print a declaration at the bottom of that page; the argument of this command is the name of the particular degree.
 

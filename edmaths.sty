@@ -98,6 +98,7 @@
 
 % If with-cmbright selected, use the (sans-serif) Computer Modern Bright font.
 \ifthenelse{\boolean{with-cmbright}}{
+    % NOTE must be compiled with xelatex or luatex
     \RequirePackage{cmap}
     \RequirePackage{cmbright}
     \RequirePackage[T1]{fontenc}
@@ -106,8 +107,9 @@
 
 % :)
 \ifthenelse{\boolean{with-comicsans}}{
-	\usepackage{fontspec}
-	\setmainfont{Comic Sans MS}
+    % NOTE must be compiled with xelatex or luatex
+    \usepackage{fontspec}
+    \setmainfont{Comic Sans MS}
 } {}
 
 % If with-hyperref selected, configure its default settings

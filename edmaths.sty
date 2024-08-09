@@ -192,17 +192,27 @@
 }
 
 
-% Declaration used for everything except year 4 projects
-\newenvironment{declaration}{
-    % The declaration should be adapted to reflect the nature of the document.
+% Declaration style for everything except year 4 projects
+\newcommand{\declaration}[1]{
+    % Doesn't need a chapter number or adding to the contents page
     \chapter*{Declaration}
+    % Must always be single spaced
     \begin{singlespace}
-}{	\end{singlespace}
+        \def\param{#1}
+        \ifx\param\empty
+            I declare that this thesis was composed by myself
+            and that the work contained therein is my own,
+            except where explicitly stated otherwise in the text.
+        \else
+            {#1}
+        \fi
+    \end{singlespace}
     {\raggedleft\vspace{2cm}(\textit{\@author})}
 }
 
-% Declaration for year 4 project, argument is degree programme (e.g. MMath)
-\newcommand{\yfourdeclaration}[1]{%
+
+% Declaration style for year 4 project, argument is degree programme (e.g. MMath)
+\newcommand{\yfourdeclaration}[1]{
     \vfill
     \noindent
     This project report is submitted in partial fulfilment

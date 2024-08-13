@@ -16,5 +16,5 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: edengths.tex
+          root_file: example-report.tex
           args: "-pdfps -file-line-error -halt-on-error -interaction=nonstopmode"

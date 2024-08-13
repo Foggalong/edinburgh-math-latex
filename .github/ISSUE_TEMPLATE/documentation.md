@@ -2,7 +2,7 @@
 name: Documentation
 about: Any issues or requests for the style files' documentation
 title: ''
-labels: documentation
+labels: docs
 assignees: ''
 
 ---

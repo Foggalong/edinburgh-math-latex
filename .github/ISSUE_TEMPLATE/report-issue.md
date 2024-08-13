@@ -1,5 +1,5 @@
 ---
-name: Report Issue
+name: Report Stylesheet Issue
 about: Report an issue or feature request for `edmaths.sty` or the template thesis
 title: ''
 labels: report

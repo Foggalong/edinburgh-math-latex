@@ -29,6 +29,8 @@ jobs:
           mv example-report.pdf build/
           git fetch --all
           git checkout --track origin/gh-pages
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           cp build/example-report.pdf .
           git add ./example-report.pdf
           git commit -m "Update report PDF"

@@ -5,6 +5,8 @@ on:
     - 'edmaths.sty'
     - 'example-report.tex'
     - 'example-references.bib'
+  workflow_dispatch:
+
 jobs:
   build_latex:
     runs-on: ubuntu-latest

@@ -1,5 +1,7 @@
 # Edinburgh LaTeX
 
+[![Report CI](https://github.com/Foggalong/edinburgh-math-latex/actions/workflows/report-ci.yaml/badge.svg)](https://foggalong.github.io/edinburgh-math-latex/example-report.pdf) [![Beamer CI](https://github.com/Foggalong/edinburgh-math-latex/actions/workflows/beamer-ci.yaml/badge.svg)](https://foggalong.github.io/edinburgh-math-latex/example-presentation.pdf)
+
 LaTeX styles files for School of Math, University of Edinburgh. This includes:
 
 - [edmaths.sty](#report-stylesheet), report and thesis stylesheet,

@@ -1,0 +1,267 @@
+\documentclass[12pt]{article}
+
+% This is documentation for the `edmaths` LaTeX package, maintained by
+% Josh Fogg for the University of Edinburgh. This file closely builds on
+% that provided Alan Munn for the MSU Thesis Class, `msu-thesis`. The
+% original documentation is licensed under LaTeX Project Public License
+% (LPPL) version 1.3 or later, and this documentation is licensed under
+% the LLP version 1.3c. For more information, see the GitHub repository:
+% https://github.com/Foggalong/edinburgh-math-latex
+
+\def\msuversion{0.98}
+\def\msudate{2024-08-15}
+\title{\textbf{Using the \pkg{edmaths} Report \& Thesis Class}}
+\author{\textbf{Josh Fogg}\\School of Mathematics\\The University of Edinburgh\\\texttt{\href{mailto:j.fogg@ed.ac.uk}{j.fogg@ed.ac.uk}}}
+\date{Version \msuversion\\\msudate}
+
+% basic formatting tweaks
+\usepackage[lmargin=2cm,rmargin=2cm,tmargin=3cm,bmargin=2cm]{geometry}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{enumitem}
+
+% use same fourier font available through edmaths
+\usepackage{cmap}
+\usepackage{fourier}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+
+% setup syntax highlighting
+\usepackage{highlightlatex}
+\definecolor{whiteF0}{HTML}{F0F0F0}
+\lstset{
+    % external padding
+    aboveskip=.4em,
+    belowskip=-.2em,
+    xleftmargin=.03\textwidth,
+    xrightmargin=.03\textwidth,
+    % basic formatting
+    backgroundcolor=\color{whiteF0},
+    showstringspaces=false,
+    columns=fixed,
+    basewidth=.5em,
+    basicstyle={\fontfamily{zlmtt}\selectfont},
+    breaklines=true
+}
+
+
+% change new paragraph behaviour to no-indent and a linebreak
+\usepackage[parfill]{parskip}
+
+
+\newcommand\pkg[1]{\href{https://www.ctan.org/pkg/#1}{\color{teal}\lstinline{#1}}}
+\newcommand\key[1]{{\color{orange}\lstinline|#1|}}
+
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\section{Introduction}
+
+This is a package for use when writing reports or thesis for the \href{https://www.maths.ed.ac.uk/}{School of Mathematics} at the \href{https://www.ed.ac.uk/}{University of Edinburgh}.  It provides an easy way to generate a document in \LaTeX{} which meets all the basic formatting requirements laid out by the \href{https://www.ed.ac.uk/academic-services/students/thesis-submission}{University's typesetting rules}. This means you can focus on your actual writing, rather than worrying about font spacing, margins sizes, {\it etc}.
+
+\section{Initial Setup}
+
+While this package can in theory work with many different document classes, it is designed to best work with the \pkg{report} class which should be available with any \TeX{} distribution. It can be used with any \LaTeX{} engine, including pdfLaTeX, XeTeX, or LuaTeX. While it should work with any reasonably up-to-date TeX distribution, it is tested with 2020 and later.
+
+The essential steps to setup are then:
+\begin{enumerate}
+	\item Choose a document class using \lstinline|\documentclass[<options>]{report}|, with \key{<options>}
+		\begin{enumerate}
+			\item for font size, one of \key{10pt} (default), \key{11pt}, and \key{12pt};
+			\item for sidedness, one of \key{oneside} (default) and \key{twoside}.
+		\end{enumerate}
+	\item Define information for the title page using \lstinline|\title{...}|, \lstinline|\author{...}|, and \lstinline|\date{...}|.
+	\item Load the \pkg{edmaths} package using \lstinline|\usepackage[<options>]{edmaths}|.
+\end{enumerate}
+These steps {\bf must} be done in exactly this order or the compiler will throw errors.
+
+The loading \pkg{edmaths} also loads the packages \pkg{amsmath}, \pkg{amsthm}, \pkg{amscd}, and \pkg{amssymb}, which are required by almost all mathematical publications. Through \pkg{setspace}, line spacing settings are available that only affect the body text and not footnotes and captions.
+
+The basic package has no other special requirements, but if you have certain additional packages installed then you can use some fancifying options (see below).
+
+\section{Package Options}
+
+When loading \pkg{edmaths} with
+\begin{lstlisting}
+\usepackage[<options>]{edmaths}
+\end{lstlisting}
+we can supply additional \key{<options>} as a comma-separated list of the following keywords.
+
+\subsection{Report Type}
+
+Exactly one of \key{firstyear}, \key{secondyear}, \key{thirdyear}, \key{fourthyear}, \key{phd}, \key{masterph}, or \key{mastersc} for postgrad projects, or exactly one of \key{mmath} or \key{y4project} for undergraduate projects.
+
+This prints the correct degree name or report type on the cover page. If you do not specify any of these, for example if your desired type is not listed, set \lstinline|\degreetext| manually before including this package. For example
+\begin{lstlisting}
+\newcommand{\degreetext}{Internal Report}
+\end{lstlisting}
+will produce a document labelled as an `Internal Report'.
+
+\subsection{Line Spacing}
+
+At most one of \key{single} (default), \key{onehalf}, or \key{double}. This sets the line spacing of the body text to single, one-half and double spaced, respectively. Check out \pkg{setspace} for custom spacing options.
+
+\subsection{Fonts}
+
+For better or wrose, by default it uses \LaTeX's default font, \href{https://en.wikipedia.org/wiki/Computer_Modern}{Computer Modern}. However by specifying at most one of the font options it's to change this.
+
+Using \key{fourier} provides much improved typography by activating the \pkg{fourier} font package (based on Adobe's Utopia family) along with the \pkg{cmap} and \pkg{microtype} packages. All these dependencies must be met to use this option.
+
+While it's not typically enforced, strictly speaking the thesis guidelines require a sans serif font. If you do want to use one though, \key{cmbright} sets the font to \href{https://tug.org/FontCatalogue/computermodernbright/}{Computer Modern Bright}. This requires the \pkg{cmbright}, \pkg{cmap}, \pkg{microtype}, and \pkg{fontenc}. The latter necessitates using \href{https://xetex.sourceforge.net/}{XeTeX} or \href{https://www.luatex.org}{LuaTeX} to compile.
+
+\subsection{Links}
+
+Using \key{hyperref} creates a PDF output with clickable, all-black links. This depends on \pkg{hyperref} and \pkg{xcolor}. The packages are set up with sane default options, but to modify the behaviour, simply use the \lstinline|\hypersetup| command; see the \pkg{hyperref} documentation for details.
+
+If in addition \key{colour} is used, this sets clickable links to have a sane default colour (sepia for internal links, blue for external URLs).
+
+\subsection{Headers}
+
+If the \pkg{fancyhdr} package is installed, using \key{fancyhdr} creates nice page headers and footers (with sane default settings); to modify this behaviour, simply use the commands described in the \pkg{fancyhdr} documentation.
+
+\section{Usage}
+
+Once \pkg{edmaths} is set up, the following additional formatting commands and environments become available:
+
+\begin{itemize}
+	\item \lstinline|\maketitle| to create the cover page,
+	\item \lstinline|\declaration{...}| to create the declaration,
+	\item \lstinline|\dedication{...}| for a dedication page ({\it e.g.\/} `For Alex', not acknowledgements),
+	\item \lstinline|\begin{abstract}...\end{abstract}| for the abstract,
+	\item \lstinline|\begin{laysummary}...\end{laysummary}| for the \href{https://www.ed.ac.uk/sites/default/files/atoms/files/lay_summary_in_theses.pdf}{lay summary},
+	\item \lstinline|\begin{acknowledgements}...\end{acknowledgements}| for any acknowledgements,
+	\item \lstinline|\tableofcontents| for the table of contents.
+\end{itemize}
+
+\subsection{Declarations}
+
+While using \lstinline|\declaration{}| will give you a stock declaration page, in most cases this will need tailoring to the specific of your thesis \href{https://www.ed.ac.uk/sites/default/files/atoms/files/thesis_signed_declaration.pdf}{per university requirements}. For example, if your thesis includes previously-published work, it should be declared on this page.
+
+This can be done by for example,
+\begin{lstlisting}
+\declaration{
+    I declare that this thesis has been composed solely by myself
+    and that it has not been submitted, in whole or in part, in any
+    previous application for a degree. Except where stated otherwise
+    by reference or acknowledgement, the work presented is entirely
+    my own.
+}
+\end{lstlisting}
+
+\subsection{Abstracts}
+
+If you wish to redefine the title of the abstract, this can be done by including
+\begin{lstlisting}
+\renewcommand{\abstractname}{My New Title}
+\end{lstlisting}
+anywhere before \lstinline|\begin{document}|.
+
+\subsection{Long Titles}
+
+If your \lstinline|\title| is quite long and you're using \pkg{fancyhdr}, you may also wish to define a \lstinline|\shorttitle{...}| to prevent wrapping within the header. This {\bf must} be done after loading \pkg{edmaths} else the compiler will throw an error.
+
+\subsection{Year 4 Projects}
+
+When using the \key{y4project} option, the command \lstinline|\yfourdeclaration{...}| can be used right after the abstract to print a declaration at the bottom of that page; the argument of this command is the name of the particular degree.
+
+\subsection{Basic Example}
+
+Below is a simple example of how this might be put together in a year one PhD report.
+
+\begin{lstlisting}
+\documentclass[10pt]{report}
+
+\title{The title of my first year report}
+\author{My name}
+\date{YYYY}
+
+\usepackage[firstyear]{edmaths}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    My abstract.
+\end{abstract}
+
+\tableofcontents
+
+\chapter{First Chapter}
+
+\section{Section Name}
+
+\chapter{Second Chapter}
+
+\appendix
+
+\chapter{First Appendix}
+
+\end{document}
+\end{lstlisting}
+
+A more complicated example for a PhD thesis is packaged with \pkg{edmaths} and \href{https://github.com/Foggalong/edinburgh-math-latex/blob/main/example-report.tex}{available here}. What this looks like compiled can be \href{https://foggalong.github.io/edinburgh-math-latex/example-report.pdf}{viewed here}.
+
+\section{Additional Tips}
+
+Below is an assortment of additional advice that may be useful when formatting a thesis or report. If you've got additional tips which you think would be useful to share, do share on the \href{https://github.com/Foggalong/edinburgh-math-latex}{GitHub}.
+
+\subsection{Spacing}
+
+When using larger line spacing than single spaced, you might want to single-space your table of contents, {\it etc}. For details, see the documentation for \pkg{setspace}, but to achieve this you could use \lstinline|{\singlespacing\tableofcontents}| and similar for \lstinline|\listoffigures| and \lstinline|\listoftables|.
+    
+If you like custom line spacing, place \lstinline|\newcommand{\stretchfactor}{<x>}| before calling this package, where \key{<x>} is the line spacing factor (\key{1} gives single spacing).
+
+Put \lstinline|\flushbottom| right after \lstinline|\begin{document}| to obtain vertically justified pages.
+
+The very ``brave'' can also add \lstinline|\setlength{\parskip}{0pt}| in the preamble to remove any vertical rubber space between paragraphs, thus enforcing a strict grid layout. If you encounter underful boxes, add \lstinline|\vfill| as needed, most likely after headings ({\it e.g.\/} use \lstinline|\chapter{Introduction}\vfill|.).
+
+\subsection{Front Matter}
+
+Use \lstinline|\listoftables| and \lstinline|\listoffigures| to create a reference of all table and figure environments. Some may tell you that this is actually a requirement for a PhD thesis.
+
+Use \lstinline|\pagenumbering{roman}| and \lstinline|\pagenumbering{arabic}| to get different styles of page numbers for the front matter and make it all fancy like.
+
+If desired, use \lstinline|\addcontentsline| to add otherwise unreferenced chapters ({\it e.g.\/} the table of contents itself, the list of figures, the list of tables or the index) to the table of contents.
+
+\subsection{Fonts}
+
+If you don't want to use any of the fonts available by default simply do not specify \key{fourier} or \key{cmbright} option, and instead load \pkg{fontenc}, \pkg{cmap}, \pkg{microtype} and your font package as described in the font package's documentation.
+
+Use the \pkg{ccaption} package to customise the way that captions under figures and tables appear ({\it e.g.\/} if you prefer them to use a sans-serif font).
+
+\subsection{Overleaf}
+
+As a student or staff member at the University of Edinburgh you have access to \href{https://www.ed.ac.uk/information-services/computing/desktop-personal/software/main-software-deals/other-software/overleaf}{Overleaf Proffesional}! Do make use of this, it alleviates many of the headaches which come with using \LaTeX{} across multiple computers, which you surely will..
+
+\subsection{Archiving your thesis for the future}
+
+The current version of \pkg{edmaths} class satisfies the typesetting requirements at any one time. Given these requirements change, you may find that if you need to recompile your thesis after you have graduated that the formatting changes. To avoid this, I'd recommend saving an archived version of the \href{https://github.com/Foggalong/edinburgh-math-latex/blob/main/edmaths.sty}{\lstinline|edmaths.sty|} file in the same folder as your thesis file. You only need to do this once you have completely finished your thesis however; there's no need to do it during the writing process.
+
+\section{Troubleshooting}
+
+I'm happy to \href{mailto:j.fogg@ed.ac.uk}{answer emails} or \href{https://github.com/Foggalong/edinburgh-math-latex/issues/new?assignees=&labels=report&projects=&template=report-issue.md&title=}{GitHub issues} about formatting issues with the class, {\bf especially} when you are in the final stages of formatting your dissertation or thesis. God knows that time is already stressful enough as it is. However, please keep in mind:
+
+\begin{itemize}
+    \item I do this as a volunteer on the side of all my other work. This is not something the university pay me for, just something I did because I identified the need.
+
+    \item If you have general \LaTeX{} questions that are not specifically related to \pkg{edmaths}, please try to find answers elsewhere. Both \href{https://tex.stackexchange.com/}{tex.stackexchange.com} and \href{https://www.overleaf.com/learn}{Overleaf} are excellent resources.
+
+    \item Please make sure you have the latest version of \pkg{edmaths}, it may be your issue has already been fixed. If in doubt, check the log file and compare it with \href{https://ctan.org/pkg/msu-thesis?lang=en}{CTAN} and \href{https://github.com/Foggalong/edinburgh-math-latex}{GitHub}.
+
+    \item If you are using \href{https://www.overleaf.com}{Overleaf} , {\bf please} check the log file for errors, and fix them {\it before} you send me a sample document. By default Overleaf produces an output even when the document has lots of errors, so it could be that other errors you haven't noticed are obscuring the problem you're actually trying to fix.
+\end{itemize}
+
+
+
+If you are using the class, please take a moment to fill out my \href{https://forms.gle/bm2AUzthFxW2naK36}{anonymous usage survey}. Thanks! You should be signed into your MSU Google account to access the form, but the form itself is anonymous.
+
+\section{Acknowledgements}
+
+The original \pkg{edmaths} was written by \href{https://github.com/tkoeppe}{Thomas K\"oppe} in 2007 and freely provided under the terms of the \href{https://choosealicense.com/licenses/lppl-1.3c/}{\LaTeX{} Project Public License v1.3c}. From 2020 onwards it has been maintained by \href{https://www.maths.ed.ac.uk/~jfogg/}{Josh Fogg} (me). Thanks also to \href{https://www.linkedin.com/in/adkbeckett}{Andrew Beckett} for his contribution in improving compliance, particularly around declarations which I'd missed entirely.
+
+Thanks to you too for using \pkg{edmaths}! I'd love to hear how you got on working with it, even if there weren't any specific issues. Just \href{mailto:j.fogg@ed.ac.uk}{shoot me an email}, it always makes my day!
+
+\end{document}

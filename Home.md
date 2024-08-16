@@ -1,0 +1,1 @@
+This wiki contains documentation supplementary to the [README](https://github.com/Foggalong/edinburgh-math-latex/blob/master/README.md) and examples in the repository.

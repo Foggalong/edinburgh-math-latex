@@ -18,13 +18,14 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: docs/beamertheme-edmaths-docs.tex
-          args: "-pdfps -file-line-error -halt-on-error -interaction=nonstopmode"
+          working_directory: docs/
+          root_file: beamertheme-edmaths-docs.tex
+          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
 
       - name: Commit PDF to gh-pages
         run: |
           mkdir build
-          mv beamertheme-edmaths-docs.pdf build/
+          mv docs/beamertheme-edmaths-docs.pdf build/
           git fetch --all
           git checkout --track origin/gh-pages
           git config --local user.email "action@github.com"

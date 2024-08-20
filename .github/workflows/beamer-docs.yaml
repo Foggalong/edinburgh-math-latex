@@ -24,7 +24,7 @@ jobs:
       - name: Commit PDF to gh-pages
         run: |
           mkdir build
-          mv docs/beamertheme-edmaths-docs.pdf build/
+          mv beamertheme-edmaths-docs.pdf build/
           git fetch --all
           git checkout --track origin/gh-pages
           git config --local user.email "action@github.com"

@@ -19,7 +19,7 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: docs/edmaths-docs.tex
-          args: "-pdfps -file-line-error -halt-on-error -interaction=nonstopmode"
+          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
 
       - name: Commit PDF to gh-pages
         run: |

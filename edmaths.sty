@@ -98,7 +98,7 @@
 
 % If with-cmbright selected, use the (sans-serif) Computer Modern Bright font.
 \ifthenelse{\boolean{with-cmbright}}{
-    % NOTE must be compiled with xelatex or luatex
+    % NOTE if it doesn't compile, make sure you have CM Bright installed!
     \RequirePackage{cmap}
     \RequirePackage{cmbright}
     \RequirePackage[T1]{fontenc}

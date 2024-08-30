@@ -232,6 +232,21 @@ If you don't want to use any of the fonts available by default simply do not spe
 
 Use the \pkg{ccaption} package to customise the way that captions under figures and tables appear ({\it e.g.\/} if you prefer them to use a sans-serif font).
 
+\subsection{Subtitles}
+
+You may also wish to give your document a subtitle. Be aware that it is ambiguous whether this is allowable in the thesis guidelines, but it may be done by adding formatting commands within the title command, as below.
+
+\begin{lstlisting}
+\title{Underwater Basket Weaving \\
+    \large Analysing the optimal depth for willow rods}
+\author{Author Name}
+\date{YYYY}
+
+\usepackage[phd]{edmaths}    
+\end{lstlisting}
+
+If also using \key{fancyhdr}, remember to also add \lstinline|\shorttitle{Underwater Basket Weaving}| after loading \pkg{edmaths} also for consistency with your headers.
+
 \subsection{Overleaf}
 
 As a student or staff member at the University of Edinburgh you have access to \href{https://www.ed.ac.uk/information-services/computing/desktop-personal/software/main-software-deals/other-software/overleaf}{Overleaf Professional}! Do make use of this, it alleviates many of the headaches which come with using \LaTeX{} across multiple computers, which you surely will..

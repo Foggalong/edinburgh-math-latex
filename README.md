@@ -1,6 +1,7 @@
 # Edinburgh LaTeX
 
-[![Report CI](https://github.com/Foggalong/edinburgh-math-latex/actions/workflows/report-ci.yaml/badge.svg)](https://foggalong.github.io/edinburgh-math-latex/example-report.pdf) [![Beamer CI](https://github.com/Foggalong/edinburgh-math-latex/actions/workflows/beamer-ci.yaml/badge.svg)](https://foggalong.github.io/edinburgh-math-latex/example-presentation.pdf)
+[![Report CI](https://github.com/Foggalong/edinburgh-math-latex/actions/workflows/report-ci.yaml/badge.svg)](https://foggalong.github.io/edinburgh-math-latex/example-report.pdf) [![CTAN Version](https://img.shields.io/ctan/v/edmaths)](https://ctan.org/pkg/edmaths) **º** [![Beamer CI](https://github.com/Foggalong/edinburgh-math-latex/actions/workflows/beamer-ci.yaml/badge.svg)](https://foggalong.github.io/edinburgh-math-latex/example-presentation.pdf)
+[![CTAN Version](https://img.shields.io/ctan/v/beamertheme-edmaths)](https://ctan.org/pkg/beamertheme-edmaths)
 
 LaTeX stylesheets for the [School of Mathematics](https://www.maths.ed.ac.uk) at the [University of Edinburgh](https://www.ed.ac.uk/) in Scotland. This includes:
 

@@ -1,6 +1,6 @@
-%% Package `edmaths' v0.97
+%% Package `edmaths' v0.99
 %% File edmaths.sty
-%% Copyright 2022 Josh Fogg
+%% Copyright 2024 Josh Fogg
 %%
 %% edmaths.sty is a LaTeX style file for typesetting reports and theses in the
 %% School of Mathematics at the University of Edinburgh. Suitable for use for
@@ -17,12 +17,12 @@
 %% 
 %% This work has the LPPL maintenance status `maintained' and the current
 %% maintainer of this work is Josh Fogg. Originally written by Thomas Koeppe in
-%% 2007/07, it has since been updated by Josh Fogg in 2020/21.
+%% 2007/07, it has since been updated by Josh Fogg from 2020 onwards.
 %%
 %% This work consists of the file edmaths.sty.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{edmaths}[2021-07-17 Edinburgh maths thesis/report style v0.97]
+\ProvidesPackage{edmaths}[2024-08-30 Edinburgh maths thesis/report style v0.99]
 \RequirePackage{calc,ifthen,setspace,amsmath,amsthm,amscd,amssymb}
 
 
@@ -98,6 +98,7 @@
 
 % If with-cmbright selected, use the (sans-serif) Computer Modern Bright font.
 \ifthenelse{\boolean{with-cmbright}}{
+    % NOTE if it doesn't compile, make sure you have CM Bright installed!
     \RequirePackage{cmap}
     \RequirePackage{cmbright}
     \RequirePackage[T1]{fontenc}
@@ -106,8 +107,9 @@
 
 % :)
 \ifthenelse{\boolean{with-comicsans}}{
-	\usepackage{fontspec}
-	\setmainfont{Comic Sans MS}
+    % NOTE must be compiled with xelatex or luatex
+    \usepackage{fontspec}
+    \setmainfont{Comic Sans MS}
 } {}
 
 % If with-hyperref selected, configure its default settings
@@ -192,17 +194,27 @@
 }
 
 
-% Declaration used for everything except year 4 projects
-\newenvironment{declaration}{
-    % The declaration should be adapted to reflect the nature of the document.
+% Declaration style for everything except year 4 projects
+\newcommand{\declaration}[1]{
+    % Doesn't need a chapter number or adding to the contents page
     \chapter*{Declaration}
+    % Must always be single spaced
     \begin{singlespace}
-}{	\end{singlespace}
+        \def\param{#1}
+        \ifx\param\empty
+            I declare that this thesis was composed by myself
+            and that the work contained therein is my own,
+            except where explicitly stated otherwise in the text.
+        \else
+            {#1}
+        \fi
+    \end{singlespace}
     {\raggedleft\vspace{2cm}(\textit{\@author})}
 }
 
-% Declaration for year 4 project, argument is degree programme (e.g. MMath)
-\newcommand{\yfourdeclaration}[1]{%
+
+% Declaration style for year 4 project, argument is degree programme (e.g. MMath)
+\newcommand{\yfourdeclaration}[1]{
     \vfill
     \noindent
     This project report is submitted in partial fulfilment
@@ -236,7 +248,7 @@
 
 
 \newcommand{\dedication}[1]{%
-    % Handled dedications (e.g. 'For Alex', not aknowledgments)
+    % Handled dedications (e.g. 'For Alex', not acknowledgements)
     \clearpage
     \thispagestyle{plain}
     \vspace*{7cm}

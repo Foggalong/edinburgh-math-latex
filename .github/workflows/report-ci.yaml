@@ -1,0 +1,42 @@
+name: Report CI
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'edmaths.sty'
+      - 'example-report.tex'
+      - 'example-references.bib'
+  workflow_dispatch:
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: example-report.tex
+          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
+
+      - name: Commit PDF to gh-pages
+        run: |
+          mkdir build
+          mv example-report.pdf build/
+          git fetch --all
+          git checkout --track origin/gh-pages
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          cp build/example-report.pdf .
+          git add ./example-report.pdf
+          git commit -m "Update report PDF"
+
+      - name: Push changes to gh-pages
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages

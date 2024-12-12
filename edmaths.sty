@@ -23,23 +23,29 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{edmaths}[2024-08-30 Edinburgh maths thesis/report style v0.99]
-\RequirePackage{calc,ifthen,setspace,amsmath,amsthm,amscd,amssymb}
+\RequirePackage{geometry,ifthen,setspace,amsmath,amsthm,amscd,amssymb}
 
 
 
 % PAGE SIZE AND MARGINS
 % These settings control the size of the page and its margins. All measurements are
 % compliant wih the school's typesetting requirements.
+% For physical hardback binding, the University printing service demands 4cm inner
+% and 2.5cm outer margins. FThis is specified below as 25mm margins on both sides
+% plus a 15mm binding offset. 
 
-\setlength{\paperheight}{297mm}    % A4 Paper
-\setlength{\paperwidth}{210mm}     %
-\setlength{\oddsidemargin}{14.6mm} %  Left/Inside: 4.0cm (rel. -1in)
-\setlength{\evensidemargin}{-.4mm} %  Right/Outside: 2.5cm (rel. -1in)
-\setlength{\topmargin}{-17.4mm}    % \
-\setlength{\headheight}{6mm}       % | Top: 2.0cm (rel. -1in), out of which 6mm for the header
-\setlength{\headsep}{6mm}          % /
-\setlength{\textwidth}{145mm}      % Margins: 2.5cm + 4cm
-% Textheight delayed until we know the line spacing.
+\geometry{
+	a4paper,
+	inner         = 25mm,    % inner margin if two-sided, left if one-sided.
+	outer         = 25mm,    % outer margin if two-sided, right if one-sided
+	bindingoffset = 15mm,	 % leaves space for physical binding
+	top           = 20mm,    % top margin
+	bottom        = 40mm,    % bottom margin
+	headheight    = 6mm,     % size of header
+	headsep       = 6mm,     % distance from top of text to top of header
+	nomarginpar   = true,    % zero space allocated for margin notes
+	heightrounded = true     % prevents vbox errors due to textheight not being equal to height of inter number of lines.
+}
 
 % The following is removed in favour of the `report' class options "oneside/twoside".
 % \@twosidefalse \@mparswitchfalse  % Single-sided by default
@@ -75,7 +81,7 @@
 \DeclareOption{masterph}{\renewcommand{\degreetext}{Master of Philosophy}}
 \DeclareOption{mastersc}{\renewcommand{\degreetext}{Master of Science by Research}}
 
-% Options relating to stretchfactor (used for margin spacing)
+% Options relating to stretchfactor (used for line spacing)
 \ifthenelse{\isundefined{\stretchfactor}}{\newcommand{\stretchfactor}{1}}{}
 \DeclareOption{single}{\renewcommand{\stretchfactor}{1}}
 \DeclareOption{onehalf}{\renewcommand{\stretchfactor}{1.5}}
@@ -147,19 +153,8 @@
     \fi%  
 } {}
 
-
-
-% BODY HEIGHT
-% Set up the text body height. For the text height, we calculate the largest number of
-% lines that gives us no more than 4cm bottom margin. This depends on the line spacing,
-% which we need first.
-
+% Set the line spacing
 \setstretch{\stretchfactor}
-
-% Debug only: In the next line, \XXXfactor contains the number of lines on a text-only page.
-% \newlength{\XXXunit}\setlength{\XXXunit}{1pt}\newlength{\XXXfactor}\setlength{\XXXfactor}{1pt + ((672pt - \topskip) / \baselineskip) * \XXXunit}
-\newlength{\scratchlength}\setlength{\scratchlength}{\topskip + ((672pt - \topskip) / \baselineskip) * \baselineskip + \baselineskip}
-\setlength{\textheight}{\scratchlength}
 
 
 

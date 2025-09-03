@@ -1,14 +1,14 @@
 # Edinburgh LaTeX
 
-[![Report CI](https://github.com/Foggalong/edinburgh-math-latex/actions/workflows/report-ci.yaml/badge.svg)](https://foggalong.github.io/edinburgh-math-latex/example-report.pdf) [![CTAN Version](https://img.shields.io/ctan/v/edmaths)](https://ctan.org/pkg/edmaths) **º** [![Beamer CI](https://github.com/Foggalong/edinburgh-math-latex/actions/workflows/beamer-ci.yaml/badge.svg)](https://foggalong.github.io/edinburgh-math-latex/example-presentation.pdf)
+[![Report CI](https://github.com/UoE-School-of-Mathematics/LaTeX-Templates/actions/workflows/report-ci.yaml/badge.svg)](https://UoE-School-of-Mathematics.github.io/LaTeX-Templates/example-report.pdf) [![CTAN Version](https://img.shields.io/ctan/v/edmaths)](https://ctan.org/pkg/edmaths) **º** [![Beamer CI](https://github.com/UoE-School-of-Mathematics/LaTeX-Templates/actions/workflows/beamer-ci.yaml/badge.svg)](https://UoE-School-of-Mathematics.github.io/LaTeX-Templates/example-presentation.pdf)
 [![CTAN Version](https://img.shields.io/ctan/v/beamertheme-edmaths)](https://ctan.org/pkg/beamertheme-edmaths)
 
 LaTeX stylesheets for the [School of Mathematics](https://www.maths.ed.ac.uk) at the [University of Edinburgh](https://www.ed.ac.uk/) in Scotland. This includes:
 
-- [**`edmaths`**](edmaths.sty ) ([_documentation_](https://foggalong.github.io/edinburgh-math-latex/edmaths-docs.pdf), [_compiled example_](https://foggalong.github.io/edinburgh-math-latex/example-report.pdf))<br>
+- [**`edmaths`**](edmaths.sty ) ([_documentation_](https://UoE-School-of-Mathematics.github.io/LaTeX-Templates/edmaths-docs.pdf), [_compiled example_](https://UoE-School-of-Mathematics.github.io/LaTeX-Templates/example-report.pdf))<br>
   A report and thesis stylesheet for easier compliance with the [university’s typesetting rules](https://www.ed.ac.uk/academic-services/students/thesis-submission).
 
-- [**`beamertheme-edmaths`**](beamerthemeedmaths.sty), ([_documentation_](https://foggalong.github.io/edinburgh-math-latex/beamertheme-edmaths-docs.pdf), [_compiled example_](https://foggalong.github.io/edinburgh-math-latex/example-presentation.pdf))<br>
+- [**`beamertheme-edmaths`**](beamerthemeedmaths.sty), ([_documentation_](https://UoE-School-of-Mathematics.github.io/LaTeX-Templates/beamertheme-edmaths-docs.pdf), [_compiled example_](https://UoE-School-of-Mathematics.github.io/LaTeX-Templates/example-presentation.pdf))<br>
   A beamer presentation theme which follows the [university's brand guidelines](https://communications-marketing.ed.ac.uk/marketing/brand).
 
 To use, download the files and store them either with your `.tex` file(s) or in any directory that's findable by LaTeX (e.g. `$TEXINPUTS`).
@@ -21,7 +21,7 @@ While [Josh Fogg](https://github.com/Foggalong) maintains these versions, they w
 - [Saturnino Luz](https://www.ed.ac.uk/profile/saturnino-luz), created the [Beamer template](https://www.overleaf.com/latex/templates/usher-beamer-theme-new/pwjqsqkzhtsy) for the [Usher Institute](https://www.ed.ac.uk/usher);
 - [Ben Brown](https://github.com/bencwbrown), modified the Beamer theme for general UoE usage.
 
-Issues can be flagged [on GitHub](https://github.com/Foggalong/edinburgh-math-latex/issues) by [by email](mailto:j.fogg@ed.ac.uk).
+Issues can be flagged [on GitHub](https://github.com/UoE-School-of-Mathematics/LaTeX-Templates/issues) by [by email](mailto:j.fogg@ed.ac.uk).
 
 ## Licenses
 

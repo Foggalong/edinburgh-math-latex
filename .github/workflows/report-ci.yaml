@@ -11,6 +11,9 @@ on:
 
 jobs:
   build_latex:
+    permissions:
+      contents: read
+      pages: write
     runs-on: ubuntu-latest
 
     steps:
